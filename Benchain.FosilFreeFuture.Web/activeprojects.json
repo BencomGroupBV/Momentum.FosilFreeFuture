@@ -1,0 +1,40 @@
+{
+  "CardTitle": "Active projects",
+  "Type": "active",
+  "ProfileId":  "1",
+  "Projects": [
+    {
+      "Name": "Test 1a",
+      "Country": "NL",
+      "Description": "Bla bla",
+      "FundsNeeded": 2500,
+      "FundsReceived": 1500,
+      "Image": "amazon.jpg",
+      "Logo": "vattenfall.jpg",
+      "Initiated": "Sjoerd",
+      "Status": "closed"
+    },
+    {
+      "Name": "Test 1a",
+      "Country": "NL",
+      "Description": "Bla bla",
+      "FundsNeeded": 3600,
+      "FundsReceived": 200,
+      "Image": "plastic.jpg",
+      "Logo": "klm.jpg",
+      "Initiated": "Sjoerd",
+      "Status": "closed"
+    },
+    {
+      "Name": "Test 1a",
+      "Country": "NL",
+      "Description": "Bla bla",
+      "FundsNeeded": 400,
+      "FundsReceived": 10,
+      "Image": "benches.jpg",
+      "Logo": "denhaag.jpg",
+      "Initiated": "Sjoerd",
+      "Status": "closed"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "CardTitle": "My profile",
+  "Profile": {
+    "Id": 1, 
+    "Name": "Michiel Green",
+    "City": "The Hague",
+    "Country": "The Netherlands",
+    "CurrentBalance": 152,
+    "Avatar": "avatar4.png",
+    "Portfolio": [
+      {
+        "Name": "KLM",
+        "Balance": 50
+      },
+      {
+        "Name": "Greencrowd",
+        "Balance": 10
+      },
+      {
+        "Name": "Meatless Farm",
+        "Balance": 5
+      }
+    ]
+  }
+}
+

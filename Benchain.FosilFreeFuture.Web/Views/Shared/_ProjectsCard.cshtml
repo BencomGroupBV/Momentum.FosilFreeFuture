@@ -1,0 +1,81 @@
+﻿@model ProjectsCardModel
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title font-weight-bolder">@Model.CardTitle</h5>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          @foreach (var project in Model.Projects)
+          {
+            <div class="col-4">
+
+              <div class="card card-widget widget-user shadow-lg elevation-2">
+
+                <div class="widget-user-header text-white" style="background: url('../dist/img/project/@project.Image') center center;">
+                  <h3 class="widget-user-username text-right font-weight-bolder">@project.Name</h3>
+                  <h5 class="widget-user-desc text-right font-weight-bold">@project.Country</h5>
+                </div>
+
+                <div class="widget-user-image">
+                  <img class="img-circle elevation-2" src="../dist/img/logo/@project.Logo" alt="User Avatar">
+                </div>
+
+                <div class="card-footer">
+
+                  <div class="row">
+                    <div class="col-12">
+                      <p>
+                        @project.Description
+                      </p>
+                    </div>
+                    <div class="col-12">
+                      Initiated by: @project.Initiated
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 my-2">
+                      <div class="progress-group">
+                        <span class="progress-text font-weight-bold">Progress</span>
+                        <span class="float-right"><b>@project.PercentageFunded%</b>/ @project.FundsReceived Eth</span>
+                        <div class="progress progress-md">
+                          <div class="progress-bar bg-success rounded" style="width: @project.PercentageFunded%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row my-2">
+                    <div class="col-8">
+                      @if (Model.Type == "funded")
+                      {
+                        <span class="text-center btn-block bg-gradient-secondary btn-lg">Funded</span>
+                      }
+                      else
+                      {
+                        <button type="button" class="btn btn-block bg-gradient-warning btn-lg">Back project</button>
+                      }
+                    </div>
+                    <div class="col-4">
+                      Funds needed:<br/>
+                      <span class="font-weight-bolder">@project.FundsNeeded Eth</span>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

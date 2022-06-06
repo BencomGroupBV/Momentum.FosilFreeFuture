@@ -1,0 +1,76 @@
+﻿@model ProfileCardModel;
+
+<div class="row">
+  <div class="col-12">
+    <div class="card card-success">
+      
+      <div class="card-header">
+        <h5 class="card-title font-weight-bolder">@Model.CardTitle</h5>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-4">
+            <div class="row">
+              <div class="col-4">
+                <div class="image p-0">
+                  <img src="dist/img/@Model.Profile.Avatar" class="img-circle elevation-4 p-1" height="170px" alt="User Image">
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="row">
+                  <div class="col-12">
+                    <strong>
+                      <h5>@Model.Profile.Name</h5>
+                    </strong>
+                    <span class="users-list-date">@Model.Profile.City, @Model.Profile.Country</span>
+                  </div>
+                  <div class="col-12">
+                    Curent balance
+                  </div>
+                  <div class="col-12 font-weight-bolder">
+                    &nbsp;
+                    <strong>
+                      <h3><i class="fa-brands fa-ethereum btn-lg"></i>@Model.Profile.CurrentBalance</h3></strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-4">
+            <div class="row">
+
+              <div class="col-12">
+                <strong>
+                  <h5>Portfolio</h5>
+                </strong>
+              </div>
+              @foreach (var portfolio in Model.Profile.Portfolio)
+              {
+                <div class="col-6">@portfolio.Name</div>
+                <div class="col-6">@portfolio.Balance Eth</div>
+              }
+            </div>
+          </div>
+
+
+          <div class="col-4">
+            <strong>
+              <h5>Badges</h5>
+            </strong>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model Benchain.FosilFreeFuture.Web.ViewModels.CustomerViewModel;
+
+@await Html.PartialAsync("_ProfileCard", Model.ProfileCard)
+
+@await Html.PartialAsync("_ProjectsCard", Model.FundedProjectCard)
+
+@await Html.PartialAsync("_ProjectsCard", Model.ActiveProjectCard)
+
+
+<script language="javascript">
+  var url = window.location;
+  var allLinks = document.querySelectorAll('.nav-item a');
+  var currentLink = [...allLinks].filter(e => {
+    return e.href == url;
+  });
+
+  if (currentLink.length > 0) { 
+    currentLink[0].classList.add("active");
+  }
+</script>

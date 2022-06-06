@@ -1,0 +1,40 @@
+{
+  "CardTitle": "Backed projects by you",
+  "Type": "funded",
+  "ProfileId": "1",
+  "Projects": [
+    {
+      "Name": "Test 1f",
+      "Country": "NL",
+      "Description": "Bla bla",
+      "FundsNeeded": 2500,
+      "FundsReceived": 2500,
+      "Image": "amazon.jpg",
+      "Logo": "vattenfall.jpg",
+      "Initiated": "Sjoerd",
+      "Status": "closed"
+    },
+    {
+      "Name": "Test 1f",
+      "Country": "NL",
+      "Description": "Bla bla",
+      "FundsNeeded": 3600,
+      "FundsReceived": 3600,
+      "Image": "plastic.jpg",
+      "Logo": "klm.jpg",
+      "Initiated": "Sjoerd",
+      "Status": "closed"
+    },
+    {
+      "Name": "Test 1f",
+      "Country": "NL",
+      "Description": "Bla bla",
+      "FundsNeeded": 400,
+      "FundsReceived": 400,
+      "Image": "benches.jpg",
+      "Logo": "denhaag.jpg",
+      "Initiated": "Sjoerd",
+      "Status": "closed"
+    }
+  ]
+}
