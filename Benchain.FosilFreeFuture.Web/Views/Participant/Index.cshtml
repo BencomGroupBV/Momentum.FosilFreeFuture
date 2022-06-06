@@ -1,9 +1,5 @@
-﻿
+﻿@model Benchain.FosilFreeFuture.Web.ViewModels.ParticipantViewModel
 
-@{
-    ViewData["Title"] = "Participant";
-}
-
-<h2>Participants</h2>
+@await Html.PartialAsync("_ProfileCard", Model.ProfileCard)
 
 

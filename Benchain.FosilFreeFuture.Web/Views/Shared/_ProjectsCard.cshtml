@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="widget-user-image">
-                  <img class="img-circle elevation-2" src="../dist/img/logo/@project.Logo" alt="User Avatar">
+                  <img class="img-circle-logo elevation-2" src="../dist/img/logo/@project.Logo" alt="User Avatar">
                 </div>
 
                 <div class="card-footer">
@@ -60,7 +60,7 @@
                       }
                       else
                       {
-                        <button type="button" class="btn btn-block bg-gradient-warning btn-lg">Back project</button>
+                        <a href="@Url.Action("Fund","Customer", new {id=@project.Id })" type="button"  class="btn btn-block bg-gradient-warning btn-lg">Back project</a>
                       }
                     </div>
                     <div class="col-4">

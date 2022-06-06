@@ -12,7 +12,7 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.css">
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed layout-footer-fixed"> <!-- dark-mode add to class-->
 <div class="wrapper">
@@ -92,6 +92,18 @@
 @*<script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard2.js"></script>*@
+
+<script language="javascript">
+  var url = window.location;
+  var allLinks = document.querySelectorAll('.nav-item a');
+  var currentLink = [...allLinks].filter(e => {
+    return e.href == url;
+  });
+
+  if (currentLink.length > 0) { 
+    currentLink[0].classList.add("active");
+  }
+</script>
 </body>
 </html>
 

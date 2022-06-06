@@ -2,9 +2,9 @@
 
 namespace Benchain.FosilFreeFuture.Web.ViewModels;
 
-public class CustomerViewModel
+public class ParticipantViewModel
 {
   public ProfileCardModel? ProfileCard { get; set; }
-  public ProjectsCardModel? FundedProjectCard { get; set; }
-  public ProjectsCardModel? ActiveProjectCard { get; set; }
+  public ProjectsCardModel? ApprovedProjectCard { get; set; }
+  public ProjectsCardModel? OpenProjectCard { get; set; }
 }

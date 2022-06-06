@@ -7,14 +7,4 @@
 @await Html.PartialAsync("_ProjectsCard", Model.ActiveProjectCard)
 
 
-<script language="javascript">
-  var url = window.location;
-  var allLinks = document.querySelectorAll('.nav-item a');
-  var currentLink = [...allLinks].filter(e => {
-    return e.href == url;
-  });
 
-  if (currentLink.length > 0) { 
-    currentLink[0].classList.add("active");
-  }
-</script>

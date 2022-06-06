@@ -13,5 +13,6 @@
       public string Avatar { get; set; }
 
       public List<PortfolioModel> Portfolio { get; set; }
-    }
+      public List<BadgesModel> Badges { get; set; }
+  }
 }
