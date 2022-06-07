@@ -31,54 +31,42 @@
                     </strong>
                     <span class="users-list-date">@Model.Profile.City, @Model.Profile.Country</span>
                   </div>
-                  <div class="col-12 mt-2">
+                  <div class="col-12">
                     Curent balance
                   </div>
                   <div class="col-12 font-weight-bolder">
-                    <strong><h3><i class="fa-brands fa-ethereum btn-lg"></i>@Model.Profile.CurrentBalance</h3></strong>
+                    &nbsp;
+                    <strong>
+                      <h3><i class="fa-brands fa-ethereum btn-lg"></i>@Model.Profile.CurrentBalance</h3></strong>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          @if (Model.Profile.Portfolio != null)
-          {
-            <div class="col-4">
-              <div class="row">
-                <div class="col-12">
-                  <strong>
-                    <h5>Portfolio</h5>
-                  </strong>
-                </div>
-                @foreach (var portfolio in Model.Profile.Portfolio)
-                {
-                  <div class="col-4">@portfolio.Name</div>
-                  <div class="col-8">@portfolio.Balance Eth</div>
-                }
-              </div>
-            </div>
-          }
 
-          @if (Model.Profile.Badges != null)
-          {
-            <div class="col-4">
-              <div class="row">
-                <div class="col-12">
-                  <strong>
-                    <h5>Badges</h5>
-                  </strong>
-                </div>
-                @foreach (var badge in Model.Profile.Badges)
-                {
-                  <div class="col-2 mb-1">
-                    <img src="dist/img/badges/@badge.Image" class="img-circle-logo elevation-1" height="50px" alt="badge Image">
-                  </div>
-                  <div class="col-10 mb-1">@badge.Name<br/><small>@badge.Subtitle</small></div>
-                }
+          <div class="col-4">
+            <div class="row">
+
+              <div class="col-12">
+                <strong>
+                  <h5>Portfolio</h5>
+                </strong>
               </div>
+              @foreach (var portfolio in Model.Profile.Portfolio)
+              {
+                <div class="col-6">@portfolio.Name</div>
+                <div class="col-6">@portfolio.Balance Eth</div>
+              }
             </div>
-          }
+          </div>
+
+
+          <div class="col-4">
+            <strong>
+              <h5>Badges</h5>
+            </strong>
+          </div>
 
         </div>
       </div>
@@ -86,5 +74,3 @@
     </div>
   </div>
 </div>
-
-

@@ -1,8 +1,7 @@
 {
   "CardTitle": "My profile",
   "Profile": {
-    "Id": 1,
-    "Type":  "customer",
+    "Id": 1, 
     "Name": "Michiel Green",
     "City": "The Hague",
     "Country": "The Netherlands",
@@ -21,18 +20,6 @@
         "Name": "Meatless Farm",
         "Balance": 5
       }
-    ],
-    "Badges": [
-      {
-        "Name": "Ocean cleanup",
-        "Subtitle": "Invents in anti-plastic",
-        "Image": "oceancleanup.png"
-      },
-    {
-    "Name": "Tree planted",
-    "Subtitle": "Support building forrest",
-    "Image": "planttree.png"
-  }
     ]
   }
 }

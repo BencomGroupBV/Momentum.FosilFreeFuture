@@ -1,6 +1,10 @@
+using Benchain.FosilFreeFuture.Service;
+using Benchain.FosilFreeFuture.Service.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IProjectSmartContractService, ProjectSmartContractService>();
 
 var app = builder.Build();
 
