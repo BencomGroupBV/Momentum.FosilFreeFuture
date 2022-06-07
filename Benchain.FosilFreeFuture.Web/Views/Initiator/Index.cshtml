@@ -1,13 +1,9 @@
-﻿
+﻿@model Benchain.FosilFreeFuture.Web.ViewModels.InitiatorViewModel
 
-@{
-    ViewData["Title"] = "Initiator";
-}
-
-<h2>Initiators</h2>
+@await Html.PartialAsync("_ProfileCard", Model.ProfileCard)
 
 
-@using (Html.BeginForm("CreateProject", "Initiator", FormMethod.Get))
+@using (Html.BeginForm("CreateProject", "Initiator", FormMethod.Post))
 {
-    <button>TEST</button>
+  <button type="button" class="btn btn-block bg-gradient-warning btn-lg">Save new project</button>
 }

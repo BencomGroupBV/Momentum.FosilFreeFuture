@@ -18,13 +18,48 @@
     currentLink[0].classList.add("active");
   }
 
+  var p100 = 0;
+  var p100t = 0;
 
- 
+  var p101 = 0;
+  var p101t = 0;
+
+  var p102 = 0;
+  var p102t = 0;
+
     setInterval(function() {
-        var someval = Math.floor(Math.random() * 100);
-        $('#100-pt').html('<b>'+ someval +'%</b> / 1500 Eth');
-        $('#100-p').attr('style','width: ' + someval +'%');
+      
+        var someval = Math.floor(Math.random() * 10);
+        p100 = p100 + someval;
+        p100t = 2500 / 100 * p100;
+        if (p100 > 100) {
+          p100 = 0;
+          p100t = 0;
+        }
+        $('#'+100+'-pt').html('<b>'+ p100 +'%</b> / '+ p100t +' Eth');
+        $('#'+100+'-p').attr('style','width: ' + p100 +'%');
+
+        someval = Math.floor(Math.random() * 10);
+        p101 = p101 + someval;
+        p101t = 3600 / 100 * p101;
+        if (p101 > 100) {
+          p101 = 0;
+          p101t = 0;
+        }
+        $('#'+101+'-pt').html('<b>'+ p101 +'%</b> / '+ p101t +' Eth');
+        $('#'+101+'-p').attr('style','width: ' + p101 +'%');
+
+        someval = Math.floor(Math.random() * 10);
+        p102 = p102 + someval;
+        p102t = (400 / 102 * p102).toFixed(0);
+        if (p102 > 100) {
+          p102 = 0;
+          p102t = 0;
+        }
+        $('#'+102+'-pt').html('<b>'+ p102 +'%</b> / '+ p102t +' Eth');
+        $('#'+102+'-p').attr('style','width: ' + p102 +'%');
+
       },
-      1000); //Delay here = 5 seconds 
+      3000); 
  
 </script>
