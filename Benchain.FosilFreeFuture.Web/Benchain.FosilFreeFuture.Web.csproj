@@ -12,7 +12,7 @@
 
 
   <ItemGroup>
-    <Content Update="wwwroot\profile1.json">
+    <Content Update="wwwroot\profile-1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
