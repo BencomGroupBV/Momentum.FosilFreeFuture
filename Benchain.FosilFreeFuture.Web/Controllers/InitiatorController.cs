@@ -5,11 +5,11 @@ namespace Benchain.FosilFreeFuture.Web.Controllers;
 
 public class InitiatorController : Controller
 {
-  private readonly IProjectContractService _web3;
+  private readonly IProjectSmartContractService _projectSmartContract;
 
-  public InitiatorController(IProjectContractService web3)
+  public InitiatorController(IProjectSmartContractService projectSmartContract)
   {
-    _web3 = web3;
+    _projectSmartContract = projectSmartContract;
   }
 
   public IActionResult Index()
@@ -19,7 +19,7 @@ public class InitiatorController : Controller
 
   public void CreateProject()
   {
-    _web3.CreateProject();
+    _projectSmartContract.CreateProject();
   }
 
 }

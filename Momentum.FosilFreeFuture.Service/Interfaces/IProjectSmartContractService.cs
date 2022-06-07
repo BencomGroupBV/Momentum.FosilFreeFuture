@@ -3,7 +3,7 @@ using Nethereum.Contracts;
 
 namespace Benchain.FosilFreeFuture.Service.Interfaces
 {
-  public interface IProjectContractService
+  public interface IProjectSmartContractService
   {
     string CreateProject();
     Contract? GetContract();
