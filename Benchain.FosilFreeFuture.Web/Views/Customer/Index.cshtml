@@ -14,7 +14,17 @@
     return e.href == url;
   });
 
-  if (currentLink.length > 0) { 
+  if (currentLink.length > 0) {
     currentLink[0].classList.add("active");
   }
+
+
+ 
+    setInterval(function() {
+        var someval = Math.floor(Math.random() * 100);
+        $('#100-pt').html('<b>'+ someval +'%</b> / 1500 Eth');
+        $('#100-p').attr('style','width: ' + someval +'%');
+      },
+      1000); //Delay here = 5 seconds 
+ 
 </script>

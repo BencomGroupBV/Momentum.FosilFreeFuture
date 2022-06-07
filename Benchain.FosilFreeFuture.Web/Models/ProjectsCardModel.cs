@@ -4,6 +4,7 @@
   {
     public string CardTitle { get; set; }
     public string Type { get; set; }
+    public string ProfileId { get; set; }
     public List<ProjectModel>? Projects { get; set; }
   }
 }

@@ -4,6 +4,7 @@
   "ProfileId": "1",
   "Projects": [
     {
+      "Id": "200",
       "Name": "Test 1f",
       "Country": "NL",
       "Description": "Bla bla",
@@ -15,6 +16,7 @@
       "Status": "closed"
     },
     {
+      "Id": "201",
       "Name": "Test 1f",
       "Country": "NL",
       "Description": "Bla bla",
@@ -26,6 +28,7 @@
       "Status": "closed"
     },
     {
+      "Id": "202",
       "Name": "Test 1f",
       "Country": "NL",
       "Description": "Bla bla",
