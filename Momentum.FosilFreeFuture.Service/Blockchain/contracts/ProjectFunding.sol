@@ -5,7 +5,7 @@ import '@openzeppelin/contracts/utils/math/SafeMath.sol';
 contract ProjectFunding {
 using SafeMath for uint256;
 
- Project[] private projects;
+ Project[] public projects;
 
     event ProjectStarted(
         address contractAddress,
@@ -66,7 +66,7 @@ contract Project {
         currentBalance = 0;
     }
 
-    function getDetails() public view returns 
+    function getDetails() public view return 
     (
         address payable projectStarter,
         string memory projectTitle,
