@@ -44,6 +44,7 @@ public class InitiatorController : Controller
   public void CreateProject()
   {
     _projectSmartContract.CreateProject();
+    _projectSmartContract.GetProjects();
   }
 
 }
