@@ -17,4 +17,9 @@
     </Content>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\dist\img\badge\" />
+  </ItemGroup>
+
 </Project>

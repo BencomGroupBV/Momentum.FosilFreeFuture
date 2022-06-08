@@ -1,13 +1,14 @@
 {
   "CardTitle": "Participant",
   "Profile": {
-    "Id": 1, 
+    "Id": 1,
     "Name": "KLM",
     "City": "The Hague",
     "Country": "The Netherlands",
-    "CurrentBalance": 152,
+    "CurrentBalance": 100000,
     "Avatar": "logo/klm.jpg",
-    "Portfolio": []
+    "Portfolio": [],
+    "Badges": []
   }
 }
 

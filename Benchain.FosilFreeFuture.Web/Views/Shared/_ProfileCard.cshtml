@@ -20,7 +20,7 @@
             <div class="row">
               <div class="col-4">
                 <div class="image p-0">
-                  <img src="dist/img/@Model.Profile.Avatar" class="img-circle elevation-4 p-1" height="170px" alt="User Image">
+                  <img src="dist/img/@Model.Profile.Avatar" class="img-circle elevation-4 p-1" height="170px">
                 </div>
               </div>
               <div class="col-8">
@@ -44,29 +44,48 @@
             </div>
           </div>
 
+          @if (Model.Profile.Portfolio.Any())
+          {
+            <div class="col-4">
+              <div class="row">
 
+                <div class="col-12">
+                  <strong>
+                    <h5>Portfolio</h5>
+                  </strong>
+                </div>
+                @foreach (var portfolio in Model.Profile.Portfolio)
+                {
+                  <div class="col-6">@portfolio.Name</div>
+                  <div class="col-6">@portfolio.Balance Eth</div>
+                }
+              </div>
+            </div>
+          }
+          
+          @if(Model.Profile.Badges.Any()){
           <div class="col-4">
             <div class="row">
-
               <div class="col-12">
                 <strong>
-                  <h5>Portfolio</h5>
+                  <h5>Badges</h5>
                 </strong>
               </div>
-              @foreach (var portfolio in Model.Profile.Portfolio)
+              @foreach (var badge in Model.Profile.Badges)
               {
-                <div class="col-6">@portfolio.Name</div>
-                <div class="col-6">@portfolio.Balance Eth</div>
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-2"> <img src="dist/img/badge/@badge.Image" class="img-logo elevation-1 p-1" height="50px"></div>
+                    <div class="col-10">
+                      <div class="col-12">@badge.Name</div>
+                      <div class="col-12 small">@badge.Subtitle</div>
+                    </div>
+                  </div>
+                </div>
               }
             </div>
           </div>
-
-
-          <div class="col-4">
-            <strong>
-              <h5>Badges</h5>
-            </strong>
-          </div>
+          }
 
         </div>
       </div>

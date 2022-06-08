@@ -53,6 +53,10 @@ public class CustomerController : Controller
       model.ActiveProjectCard = JsonSerializer.Deserialize<ProjectsCardModel>(json);
     }
 
+    if (model.ProfileCard.Profile.Portfolio.Any())
+    {
+     model.ProfileCard.Profile.CurrentBalance = model.ProfileCard.Profile.Portfolio.Aggregate(0, (current, port) => current + port.Balance);
+    }
 
     return View(model);
   }

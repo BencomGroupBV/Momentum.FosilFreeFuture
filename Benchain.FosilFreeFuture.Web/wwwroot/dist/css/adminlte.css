@@ -34747,6 +34747,19 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   width: 90px;
 }
 
+.widget-user .widget-user-logo {
+  left: 10%;
+  margin-left: -15px;
+  position: absolute;
+  top: 10px;
+}
+
+.widget-user .widget-user-logo > img {
+  border: 3px solid #fff;
+  height: auto;
+  width: 80px;
+}
+
 .widget-user .card-footer {
   padding-top: 50px;
 }
@@ -44507,6 +44520,10 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
 
 .img-circle {
   border-radius: 50%;
+}
+
+.img-logo {
+  border-radius: 20%;
 }
 
 .img-size-64,
