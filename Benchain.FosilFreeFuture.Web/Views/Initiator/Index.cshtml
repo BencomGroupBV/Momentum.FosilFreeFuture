@@ -2,8 +2,7 @@
 
 @await Html.PartialAsync("_ProfileCard", Model.ProfileCard)
 
+@await Html.PartialAsync("_ProjectsCard", Model.FundedProjectCard)
 
-@using (Html.BeginForm("CreateProject", "Initiator", FormMethod.Post))
-{
-  <button type="button" class="btn btn-block bg-gradient-warning btn-lg">Save new project</button>
-}
+@await Html.PartialAsync("_EditProject", Model.Project)
+

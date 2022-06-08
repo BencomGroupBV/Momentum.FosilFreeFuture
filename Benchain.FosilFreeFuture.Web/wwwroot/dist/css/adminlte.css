@@ -26794,7 +26794,8 @@ body.text-sm .input-group-text {
 }
 
 .card-success:not(.card-outline) > .card-header {
-  background-color: #28a745;
+  background-color: #76aa75;
+  ;
 }
 
 .card-success:not(.card-outline) > .card-header,
