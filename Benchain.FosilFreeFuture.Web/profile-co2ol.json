@@ -1,0 +1,15 @@
+{
+  "CardTitle": "Initiator",
+  "Profile": {
+    "Id": 1,
+    "Type": "initiator",
+    "Name": "CO2OL",
+    "City": "Bonn",
+    "Country": "Germany",
+    "CurrentBalance": 10000,
+    "Avatar": "logo/co2ol.jpg",
+    "Portfolio": [],
+    "Badges": []
+  }
+}
+

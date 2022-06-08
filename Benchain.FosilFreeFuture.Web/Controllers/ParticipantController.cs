@@ -30,6 +30,19 @@ public class ParticipantController :Controller
       json = r.ReadToEnd();
       model.ProfileCard = JsonSerializer.Deserialize<ProfileCardModel>(json);
     }
+
+    using (var r = new StreamReader("approvedprojects.json"))
+    {
+      json = r.ReadToEnd();
+      model.FundedProjectCard = JsonSerializer.Deserialize<ProjectsCardModel>(json);
+    }
+
+    using (var r = new StreamReader("toapproveprojects.json"))
+    {
+      json = r.ReadToEnd();
+      model.ActiveProjectCard = JsonSerializer.Deserialize<ProjectsCardModel>(json);
+    }
+
     return View(model);
   }
 }

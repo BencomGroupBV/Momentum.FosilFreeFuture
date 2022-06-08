@@ -2,6 +2,7 @@
   "CardTitle": "My profile",
   "Profile": {
     "Id": 1,
+    "Type": "customer", 
     "Name": "Michiel Green",
     "City": "The Hague",
     "Country": "The Netherlands",
@@ -13,11 +14,11 @@
         "Balance": 50
       },
       {
-        "Name": "Greencrowd",
-        "Balance": 10
+        "Name": "Vattenfall",
+        "Balance": 50
       },
       {
-        "Name": "Meatless Farm",
+        "Name": "Gem. Den Haag",
         "Balance": 5
       }
     ],

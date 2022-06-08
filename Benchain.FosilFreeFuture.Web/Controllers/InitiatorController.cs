@@ -33,11 +33,12 @@ public class InitiatorController : Controller
 
 
     //File from local files (in root project)
-    using (var r = new StreamReader("profile1.json"))
+    using (var r = new StreamReader("profile-co2ol.json"))
     {
       json = r.ReadToEnd();
       model.ProfileCard = JsonSerializer.Deserialize<ProfileCardModel>(json);
     }
+
     return View(model);
   }
 

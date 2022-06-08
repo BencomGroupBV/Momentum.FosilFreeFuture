@@ -34761,7 +34761,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .widget-user .card-footer {
-  padding-top: 50px;
+  padding-top: 10px;
 }
 
 .widget-user-2 .widget-user-header {
@@ -44370,6 +44370,10 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
 
 .border-transparent {
   border-color: transparent !important;
+}
+
+.description-project {
+  height: 4em;
 }
 
 .description-block {

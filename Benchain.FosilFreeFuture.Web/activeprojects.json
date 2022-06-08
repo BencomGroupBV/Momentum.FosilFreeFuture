@@ -5,39 +5,39 @@
   "Projects": [
     {
       "Id": "100",
-      "Name": "Test 1a",
-      "Country": "NL",
-      "Description": "Bla bla",
+      "Name": "Amazon Rainforest Project",
+      "Country": "Peru",
+      "Description": "The Brazil Nut Rainforest REDO Project is active in the southeast of Peru where it....",
       "FundsNeeded": 2500,
       "FundsReceived": 0,
       "Image": "amazon.jpg",
       "Logo": "vattenfall.jpg",
-      "Initiated": "Sjoerd",
-      "Status": "closed"
+      "Initiated": "CO2OL",
+      "Status": "open"
     },
     {
       "Id": "101",
-      "Name": "Test 1a",
-      "Country": "NL",
-      "Description": "Bla bla",
+      "Name": "Ocean Plastic Project",
+      "Country": "Netherlands",
+      "Description": "A joint effort to find solutions to reduce plastic poliution in teh oceans.",
       "FundsNeeded": 3600,
       "FundsReceived": 200,
       "Image": "plastic.jpg",
       "Logo": "klm.jpg",
-      "Initiated": "Sjoerd",
-      "Status": "closed"
+      "Initiated": "Waste2Wear",
+      "Status": "open"
     },
     {
       "Id": "102",
-      "Name": "Test 1a",
-      "Country": "NL",
-      "Description": "Bla bla",
+      "Name": "20 benches in the Zuiderpark",
+      "Country": "Netherlands",
+      "Description": "By planting new trees it reduces the CO2 emissions.",
       "FundsNeeded": 400,
       "FundsReceived": 10,
       "Image": "benches.jpg",
       "Logo": "denhaag.jpg",
       "Initiated": "Sjoerd",
-      "Status": "closed"
+      "Status": "open"
     }
   ]
 }
