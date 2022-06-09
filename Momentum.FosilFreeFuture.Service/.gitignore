@@ -1,0 +1,17 @@
+*/__pycache__/*
+__pycache__/
+
+.idea
+.scannerwork
+
+/harry_datafeeds
+/screenshots
+/venv
+/.venv
+/.vscode
+
+geckodriver.log
+test.py
+
+/blockchain/truffle-config.js
+/blockchain/build/contracts
