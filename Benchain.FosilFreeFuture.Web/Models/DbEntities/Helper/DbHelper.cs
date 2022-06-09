@@ -20,6 +20,7 @@ public static class DbHelper
       FundsNeeded = projectDb.FundsNeeded,
       FundsReceived = projectDb.FundsReceived,
       Status = projectDb.Status,
+      ParticipantId = projectDb.ParticipantId
     };
     return model;
   }

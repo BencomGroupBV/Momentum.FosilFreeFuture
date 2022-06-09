@@ -12,6 +12,7 @@
       public int FundsNeeded { get; set; }
       public int FundsReceived { get; set; }
       public string Status { get; set; }
+      public int ParticipantId { get; set; }
       public int PercentageFunded => FundsNeeded>0 ? (int) Math.Round((decimal) ((100m/FundsNeeded) * FundsReceived), 0, MidpointRounding.AwayFromZero) : 0;
     }
 }
