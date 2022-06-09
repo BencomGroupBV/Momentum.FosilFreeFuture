@@ -6,8 +6,9 @@ namespace Benchain.FosilFreeFuture.Web;
 
 public static class DbHelper
 {
-  public static ProjectModel ParseProjectDb(ProjectDb projectDb)
+  public static ProjectModel ParseProjectDb(ProjectDb? projectDb)
   {
+    if (projectDb == null) return null;
     var model = new ProjectModel
     {
       Id = $"{projectDb.Id}",
@@ -27,6 +28,7 @@ public static class DbHelper
 
   public static ProfileModel ParsProfileDb(ProfileDb? profileDb)
   {
+    if (profileDb == null) return null;
     var model = new ProfileModel
     {
       Id = profileDb.Id,
@@ -40,8 +42,9 @@ public static class DbHelper
     return model;
   }
 
-  public static PortfolioModel ParsPortfolioDb(PortfolioDb portfolioDb)
+  public static PortfolioModel ParsPortfolioDb(PortfolioDb? portfolioDb)
   {
+    if(portfolioDb == null) return null;
     var model = new PortfolioModel()
     {
       Id = portfolioDb.Id,
@@ -53,8 +56,9 @@ public static class DbHelper
     return model;
   }
 
-  public static BadgeModel ParsBadgeDb(BadgeDb badgeDb)
+  public static BadgeModel ParsBadgeDb(BadgeDb? badgeDb)
   {
+    if(badgeDb==null) return null;
     var model = new BadgeModel()
     {
       Id = badgeDb.Id,

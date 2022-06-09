@@ -12,6 +12,8 @@ public class MomentumContext : DbContext
   public DbSet<PortfolioDb> PortfolioDb { get; set; }
   public DbSet<BadgeDb> BadgeDb { get; set; }
   public DbSet<ProjectDb> ProjectDb { get; set; }
+  public DbSet<ApprovedProjectsDb> ApprovedProjectsDb { get; set; }
+  public DbSet<ParticipantDb> ParticipantDb { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -19,6 +21,8 @@ public class MomentumContext : DbContext
     modelBuilder.Entity<PortfolioDb>().ToTable("Portfolio");
     modelBuilder.Entity<BadgeDb>().ToTable("Badge");
     modelBuilder.Entity<ProjectDb>().ToTable("Project");
+    modelBuilder.Entity<ApprovedProjectsDb>().ToTable("ApprovedProjects");
+    modelBuilder.Entity<ParticipantDb>().ToTable("Participant");
   }
 
 }
