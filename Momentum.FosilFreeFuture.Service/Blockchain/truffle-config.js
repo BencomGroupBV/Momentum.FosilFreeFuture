@@ -41,7 +41,7 @@ module.exports = {
         network_id: '*'
       },
       ganache: {
-        host: "127.0.0.1",
+        host: "20.56.60.147",
         port: 7545,
         network_id: "*"
       },

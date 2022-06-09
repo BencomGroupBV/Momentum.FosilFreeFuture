@@ -1,13 +1,13 @@
 ﻿using System.Numerics;
+using Benchain.FosilFreeFuture.Service.Models;
 using Nethereum.Contracts;
-using Nethereum.Hex.HexTypes;
 
 namespace Benchain.FosilFreeFuture.Service.Interfaces
 {
   public interface IProjectSmartContractService
   {
-    string CreateProject();
+    string CreateProject(ProjectModel projectModel);
     Task<BigInteger> GetContractFunction(string functionName, Contract contract);
-    Task<HexBigInteger> GetProjects();
+    List<ProjectStartedEventDTO> GetProjects();
   }
 }

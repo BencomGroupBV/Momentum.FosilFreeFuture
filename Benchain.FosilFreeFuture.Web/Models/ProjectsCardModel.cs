@@ -1,4 +1,6 @@
-﻿namespace Benchain.FosilFreeFuture.Web.Models
+﻿using Benchain.FosilFreeFuture.Service.Models;
+
+namespace Benchain.FosilFreeFuture.Web.Models
 {
   public class ProjectsCardModel
   {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Benchain.FosilFreeFuture.Service.Interfaces;
 using Benchain.FosilFreeFuture.Web.Models;
 using Benchain.FosilFreeFuture.Web.ViewModels;
+using Benchain.FosilFreeFuture.Service.Models;
 
 namespace Benchain.FosilFreeFuture.Web.Controllers;
 
@@ -56,15 +57,11 @@ public class InitiatorController : Controller
 
   public IActionResult CreateNewProject(ProjectModel projectModel)
   {
-   
+    _projectSmartContract.CreateProject(projectModel);
 
     return RedirectToAction("Index");
 
   }
-  //public void CreateProject()
-  //{
-  //  _projectSmartContract.CreateProject();
-  //  _projectSmartContract.GetProjects();
-  //}
+
 
 }

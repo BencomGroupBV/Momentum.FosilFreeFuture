@@ -1,4 +1,5 @@
-﻿using Benchain.FosilFreeFuture.Web.Models;
+﻿using Benchain.FosilFreeFuture.Service.Models;
+using Benchain.FosilFreeFuture.Web.Models;
 
 namespace Benchain.FosilFreeFuture.Web.ViewModels
 {
