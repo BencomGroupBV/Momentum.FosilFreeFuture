@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
+using Benchain.FosilFreeFuture.Service.Models;
 using Nethereum.Contracts;
-using Nethereum.Hex.HexTypes;
 
 namespace Benchain.FosilFreeFuture.Service.Interfaces
 {
@@ -8,6 +8,6 @@ namespace Benchain.FosilFreeFuture.Service.Interfaces
   {
     string CreateProject();
     Task<BigInteger> GetContractFunction(string functionName, Contract contract);
-    Task<HexBigInteger> GetProjects();
+    List<ProjectStartedEventDTO> GetProjects();
   }
 }
