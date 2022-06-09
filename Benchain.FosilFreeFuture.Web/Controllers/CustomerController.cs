@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using Benchain.FosilFreeFuture.Web.Models;
+using Benchain.FosilFreeFuture.Web.Models.DbEntities;
 using Microsoft.AspNetCore.Mvc;
 using Benchain.FosilFreeFuture.Web.ViewModels;
 
@@ -9,10 +10,12 @@ namespace Benchain.FosilFreeFuture.Web.Controllers;
 public class CustomerController : Controller
 {
   private readonly ILogger<CustomerController> _logger;
+  private readonly MomentumContext _context;
 
-  public CustomerController(ILogger<CustomerController> logger)
+  public CustomerController(ILogger<CustomerController> logger, MomentumContext context)
   {
     _logger = logger;
+    _context = context;
   }
 
   public IActionResult Index()
@@ -23,6 +26,9 @@ public class CustomerController : Controller
       FundedProjectCard = new ProjectsCardModel(),
       ActiveProjectCard = new ProjectsCardModel()
     };
+
+    var profile = _context.ProfileDb.SingleOrDefault(p => p.Id == 1);
+
 
     string json;
 
