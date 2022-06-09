@@ -74,7 +74,7 @@
 
                       @if (Model.Type == "openproject")
                       {
-                        <button type="button" class="btn btn-block bg-gradient-warning btn-lg">View project</button>
+                        <a href="@Url.Action("Index","Initiator", new {projectId=@project.Id })"class="btn btn-warning btn-lg">View project</a>
                       }
                       @if (Model.Type == "colsedproject")
                       {

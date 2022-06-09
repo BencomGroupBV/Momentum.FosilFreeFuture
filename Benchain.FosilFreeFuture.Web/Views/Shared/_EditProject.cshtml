@@ -17,7 +17,9 @@
           <div class="col-12">
             @using (Html.BeginForm("CreateNewProject", "Initiator", FormMethod.Post))
             {
-
+              @Html.HiddenFor(m => m.Id);
+              @Html.HiddenFor(m => m.FundsReceived);
+              @Html.HiddenFor(m => m.Status);
               <div class="row">
                 <div class="col-2 col-form-label-lg">
                   Choose project name
@@ -54,9 +56,36 @@
                 </div>
               </div>
 
+              <div class="row">
+                <div class="col-2 col-form-label-lg">
+                  Logo
+                </div>
+                <div class="col-5">
+                  @Html.TextBoxFor(m => m.Logo, new {@class = "form-control"})
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-2 col-form-label-lg">
+                  Image
+                </div>
+                <div class="col-5">
+                  @Html.TextBoxFor(m => m.Image, new {@class = "form-control"})
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-2 col-form-label-lg">
+                  ParticipantId
+                </div>
+                <div class="col-5">
+                  @Html.TextBoxFor(m => m.ParticipantId, new {@class = "form-control"})
+                </div>
+              </div>
+
               <div class="row  m-2">
                 <div class="col-2 col-form-label-lg">
-                  <button type="submit" class="btn btn-block bg-gradient-warning btn-lg">Save new project</button>
+                  <button type="submit" class="btn btn-block bg-gradient-warning btn-lg">Save project</button>
                 </div>
               </div>
             }
