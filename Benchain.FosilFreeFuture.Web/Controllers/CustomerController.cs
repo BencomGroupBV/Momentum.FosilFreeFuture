@@ -1,9 +1,11 @@
 ﻿using System.Net;
 using System.Text.Json;
+using Benchain.FosilFreeFuture.Service.Models;
 using Benchain.FosilFreeFuture.Web.Models;
 using Benchain.FosilFreeFuture.Web.Models.DbEntities;
 using Microsoft.AspNetCore.Mvc;
 using Benchain.FosilFreeFuture.Web.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Benchain.FosilFreeFuture.Web.Controllers;
 
@@ -18,16 +20,41 @@ public class CustomerController : Controller
     _context = context;
   }
 
-  public IActionResult Index()
+  public async Task<IActionResult> Index()
   {
     var model = new CustomerViewModel
     {
-      ProfileCard = new ProfileCardModel(),
-      FundedProjectCard = new ProjectsCardModel(),
-      ActiveProjectCard = new ProjectsCardModel()
+      ProfileCard = new ProfileCardModel{ CardTitle = "My profile", Profile = new ProfileModel()},
+      FundedProjectCard = new ProjectsCardModel{CardTitle = "Funded projects", Projects = new List<ProjectModel>(), Type = "funded"},
+      ActiveProjectCard = new ProjectsCardModel { CardTitle = "Active projects", Projects = new List<ProjectModel>(), Type = "active" }
     };
+    var profileId = 1;
+    var profile =  _context.ProfileDb.SingleOrDefault(p => p.Id == profileId);
+    var portfolios = await _context.PortfolioDb.ToListAsync();
+    var batches = await _context.BadgeDb.ToListAsync();
+    var projects = await _context.ProjectDb.ToListAsync();
 
-    var profile = _context.ProfileDb.SingleOrDefault(p => p.Id == 1);
+    model.ProfileCard.Profile = DbHelper.ParsProfileDb(profile);
+    model.ProfileCard.Profile.Portfolio = new List<PortfolioModel>();
+    model.ProfileCard.Profile.Badges = new List<BadgeModel>();
+    foreach (var portfoliodb in portfolios.Where(p=>p.ProfileId==profileId))
+    {
+      model.ProfileCard.Profile.Portfolio.Add(DbHelper.ParsPortfolioDb(portfoliodb));
+
+      foreach (var projectdb in projects.Where(p=>p.ParticipantId == portfoliodb.ParticipantId && p.Status == "closed"))
+      {
+          model.FundedProjectCard.Projects.Add(DbHelper.ParseProjectDb(projectdb));
+      }
+      foreach (var projectdb in projects.Where(p => p.ParticipantId == portfoliodb.ParticipantId && p.Status == "open"))
+      {
+        model.ActiveProjectCard.Projects.Add(DbHelper.ParseProjectDb(projectdb));
+      }
+    }
+
+    foreach (var batchDb in batches.Where(p => p.ProfileId == profileId))
+    {
+      model.ProfileCard.Profile.Badges.Add(DbHelper.ParsBadgeDb(batchDb));
+    }
 
 
     string json;
@@ -38,26 +65,25 @@ public class CustomerController : Controller
     //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
     //json = (new WebClient()).DownloadString("https://localhost:7294/profile1.json");
     //model.ProfileCard = JsonSerializer.Deserialize<ProfileCardModel?>(json);
-
-
+    
     //File from local files (in root project)
-    using (var r = new StreamReader("profile1.json"))
-    {
-      json = r.ReadToEnd();
-      model.ProfileCard = JsonSerializer.Deserialize<ProfileCardModel>(json);
-    }
+    //using (var r = new StreamReader("profile1.json"))
+    //{
+    //  json = r.ReadToEnd();
+    //  model.ProfileCard = JsonSerializer.Deserialize<ProfileCardModel>(json);
+    //}
 
-    using (var r = new StreamReader("fundedprojects.json"))
-    {
-      json = r.ReadToEnd();
-      model.FundedProjectCard = JsonSerializer.Deserialize<ProjectsCardModel>(json);
-    }
+    //using (var r = new StreamReader("fundedprojects.json"))
+    //{
+    //  json = r.ReadToEnd();
+    //  model.FundedProjectCard = JsonSerializer.Deserialize<ProjectsCardModel>(json);
+    //}
 
-    using (var r = new StreamReader("activeprojects.json"))
-    {
-      json = r.ReadToEnd();
-      model.ActiveProjectCard = JsonSerializer.Deserialize<ProjectsCardModel>(json);
-    }
+    //using (var r = new StreamReader("activeprojects.json"))
+    //{
+    //  json = r.ReadToEnd();
+    //  model.ActiveProjectCard = JsonSerializer.Deserialize<ProjectsCardModel>(json);
+    //}
 
     if (model.ProfileCard.Profile.Portfolio.Any())
     {
