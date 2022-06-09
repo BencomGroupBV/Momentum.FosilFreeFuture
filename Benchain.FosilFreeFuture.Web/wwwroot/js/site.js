@@ -1,4 +1,14 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿async function metaMaskButtonClick() {
+    if (typeof window.ethereum !== "undefined") {
+        const accounts = await ethereum.request({ method: "eth_requestAccounts" })
+        var participantWalletAddress = document.getElementById("participantWalletAddress");
+        participantWalletAddress.value = accounts[0];
+        var button = document.getElementById("btnCreateProject");
+        button.disabled = false;
+        button.title = "";
+    }
+    else {
+        alert("Please install the MetaMask extension for your browser.");
+        window.open("https://metamask.io/download/", "_blank");
+    }
+}

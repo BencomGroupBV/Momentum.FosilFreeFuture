@@ -18,54 +18,60 @@
                         @using (Html.BeginForm("CreateNewProject", "Initiator", FormMethod.Post))
                         {
                             <div class="row">
+                                <div class="col-2 col-form-label-lg">
+                                    Wallet Id
+                                </div>
                                 <div class="col-5">
-                                    @Html.TextBoxFor(m => m.InitiatorWalletAddress, new {@class = "form-control", @id="participantWalletAddress"})
+                                    @Html.TextBoxFor(m => m.InitiatorWalletAddress, new {@class = "form-control", @id="participantWalletAddress", @disabled = true})
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-block bg-gradient-warning btn-md" onclick="metaMaskButtonClick()">Connect your wallet</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2 col-form-label-lg">
+                                    Choose project name
+                                </div>
+                                <div class="col-5">
+                                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2 col-form-label-lg">
+                                    Choose project cost
+                                </div>
+                                <div class="col-5">
+                                    @Html.TextBoxFor(m => m.FundsNeeded, new {@class = "form-control"})
                                 </div>
                             </div>
 
-                            <div class="col-2 col-form-label-lg">
-                                Choose project name
-                            </div>
-                            <div class="col-5">
-                                @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
-                            </div>
-                        <div class="row">
-                            <div class="col-2 col-form-label-lg">
-                                Choose project cost
-                            </div>
-                            <div class="col-5">
-                                    @Html.TextBoxFor(m => m.FundsNeeded, new {@class = "form-control"})
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-2 col-form-label-lg">
-                                Choose project location country
-                            </div>
-                            <div class="col-5">
+                            <div class="row">
+                                <div class="col-2 col-form-label-lg">
+                                    Choose project location country
+                                </div>
+                                <div class="col-5">
                                     @Html.TextBoxFor(m => m.Country, new {@class = "form-control"})
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-2 col-form-label-lg">
-                                Choose project description
-                            </div>
-                            <div class="col-5">
+                            <div class="row">
+                                <div class="col-2 col-form-label-lg">
+                                    Choose project description
+                                </div>
+                                <div class="col-5">
                                     @Html.TextBoxFor(m => m.Description, new {@class = "form-control"})
+                                </div>
                             </div>
-                            \\
-                        </div>
 
-                        <div class="row  m-2">
-                            <div class="col-2 col-form-label-lg">
-                                <button type="submit" class="btn btn-block bg-gradient-warning btn-lg">Save new project</button>
+                            <div class="row  m-2">
+                                <div class="col-2 col-form-label-lg">
+                                    <button id="btnCreateProject" disabled type="submit" class="btn btn-block bg-gradient-warning btn-lg" title="Connect your wallet to create a project">Save new project</button>
+                                </div>
                             </div>
-                        </div>
                         }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

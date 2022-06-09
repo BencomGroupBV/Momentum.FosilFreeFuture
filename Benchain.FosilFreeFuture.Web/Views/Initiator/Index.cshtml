@@ -7,31 +7,5 @@
 @await Html.PartialAsync("_EditProject", Model.Project)
 
 
-<script>
-    window.onload = function() {
-        const ethereumButton = document.querySelector('.enableEthereumButton');
-
-
-        ethereumButton.addEventListener("click", () => {
-            if (typeof window.ethereum !== "undefined") {
-                const accounts = ethereum.request({ method: "eth_requestAccounts" })
-                console.log(accounts);
-                //const account = accounts[0];
-                walletID.innerHTML = accounts[0];
-            }
-
-        });
-    }
-
-    async function ethButtonClick(){
-        const accounts = await ethereum.request({ method: "eth_requestAccounts" })
-        var participantWalletAddress = document.getElementById("participantWalletAddress");
-        participantWalletAddress.value = accounts[0];
-    }
-
-</script>
-<div id="walletID">Your wallet is not connected yet.</div>
-<button class="enableEthereumButton" onclick="ethButtonClick()">Enable Ethereum</button>
-
 
 
