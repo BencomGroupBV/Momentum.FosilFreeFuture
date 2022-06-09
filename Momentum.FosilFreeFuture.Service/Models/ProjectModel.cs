@@ -1,4 +1,4 @@
-﻿namespace Benchain.FosilFreeFuture.Web.Models
+﻿namespace Benchain.FosilFreeFuture.Service.Models
 {
     public class ProjectModel
     {
@@ -8,7 +8,7 @@
       public string Description { get; set; }
       public string Logo { get; set; }
       public string Image { get; set; }
-      public string Initiated { get; set; }
+      public string InitiatorWalletAddress { get; set; }
       public int FundsNeeded { get; set; }
       public int FundsReceived { get; set; }
       public string Status { get; set; }

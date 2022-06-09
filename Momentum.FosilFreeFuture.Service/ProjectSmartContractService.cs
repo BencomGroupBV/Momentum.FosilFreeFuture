@@ -13,7 +13,7 @@ namespace Benchain.FosilFreeFuture.Service
   {
     private readonly IConfiguration _config;
     private const string contractAddress = "0x235A3a59748D5fc4FC7af5eC50414f36dc81ADfD"; //ProjectFunding_dev.sol
-    private const string ABI = @"[{'anonymous':false,'inputs':[{'indexed':false,'internalType':'address','name':'contractAddress','type':'address'},{'indexed':false,'internalType':'address','name':'projectStarter','type':'address'},{'indexed':false,'internalType':'string','name':'projectTitle','type':'string'},{'indexed':false,'internalType':'string','name':'projectDesc','type':'string'},{'indexed':false,'internalType':'uint256','name':'goalAmount','type':'uint256'}],'name':'ProjectStarted','type':'event'},{'inputs':[{'internalType':'uint256','name':'','type':'uint256'}],'name':'projects','outputs':[{'internalType':'contract Project','name':'','type':'address'}],'stateMutability':'view','type':'function'},{'inputs':[{'internalType':'string','name':'title','type':'string'},{'internalType':'string','name':'description','type':'string'},{'internalType':'uint256','name':'amountToRaise','type':'uint256'}],'name':'createProject','outputs':[],'stateMutability':'nonpayable','type':'function'}]";
+    private const string ABI = @"[{'anonymous':false,'inputs':[{'indexed':false,'internalType':'address','name':'contractAddress','type':'address'},{'indexed':false,'internalType':'address','name':'projectStarter','type':'address'},{'indexed':false,'internalType':'string','name':'projectTitle','type':'string'},{'indexed':false,'internalType':'string','name':'projectDesc','type':'string'},{'indexed':false,'internalType':'uint256','name':'goalAmount','type':'uint256'}],'name':'ProjectStarted','type':'event'},{'inputs':[{'internalType':'uint256','name':'','type':'uint256'}],'name':'projects','outputs':[{'internalType':'contract Project_dev','name':'','type':'address'}],'stateMutability':'view','type':'function','constant':true},{'inputs':[{'internalType':'string','name':'title','type':'string'},{'internalType':'string','name':'description','type':'string'},{'internalType':'uint256','name':'amountToRaise','type':'uint256'}],'name':'createProject','outputs':[],'stateMutability':'nonpayable','type':'function'}]";
 
 
     public ProjectSmartContractService(IConfiguration configuration)
@@ -29,13 +29,10 @@ namespace Benchain.FosilFreeFuture.Service
       return contract;
     }
 
-    public string CreateProject()
+    public string CreateProject(ProjectModel projectModel)
     {
       var createProjectSmartContract = GetProjectSmartContract();
-      var projectCreatorAccountAddress = "0xbD12e63fbC925DCA822d2Ad415E24d2E796fB353";
-      var projectName = "Test Project";
-      var projectDescription = "Test Description";
-      var projectAmount = 50;
+      projectModel.InitiatorWalletAddress = "0xf452e0260223A5ecbA2DCB476030a5b78818e2ED";
 
       try
       {
@@ -43,9 +40,11 @@ namespace Benchain.FosilFreeFuture.Service
         var value = new HexBigInteger(new BigInteger(0));
 
         var createProjectFunction = createProjectSmartContract.GetFunction("createProject").SendTransactionAsync
-          (projectCreatorAccountAddress, gas, value, projectName, projectDescription, projectAmount);
+          (projectModel.InitiatorWalletAddress, gas, value, projectModel.Name, projectModel.Description, projectModel.FundsNeeded);
 
         createProjectFunction.Wait();
+
+        var test = createProjectFunction.Result;
 
         return createProjectFunction.Result;
       }
