@@ -1,9 +1,9 @@
 pragma solidity >=0.4.22 <0.9.0;
 
-import '@openzeppelin/contracts/utils/math/SafeMath.sol';
+// import '@openzeppelin/contracts/utils/math/SafeMath.sol';
 
 contract ProjectFunding {
-using SafeMath for uint256;
+// using SafeMath for uint256;
 
  Project[] private projects;
 
@@ -35,51 +35,54 @@ using SafeMath for uint256;
 }
 
 contract Project {
-    using SafeMath for uint256;
+    // using SafeMath for uint256;
     
     enum State {
         Fundraising,
         Successful
     }
 
-    address payable public creator;
-    uint public amountGoal; 
-    uint public completeAt;
-    uint256 public currentBalance;
-    uint public raiseBy;
-    string public title;
+    // address payable public creator;
+    // uint public amountGoal; 
+    // uint public completeAt;
+    // uint256 public currentBalance;
+    // uint public raiseBy;
+    // string public title;
+    // string public description;
+    
+    string public name;
+    string public country;
     string public description;
-    State public state = State.Fundraising; 
-    mapping (address => uint) public contributions;
+    uint256 public fundsNeeded;
+    string public image;
+    string public logo;
+    string public initiated;
+    string public status;
+
+    // State public state = State.Fundraising; 
+    // mapping (address => uint) public contributions;
 
     constructor
     (
-        address payable projectStarter,
-        string memory projectTitle,
-        string memory projectDesc,
-        uint goalAmount
+        string storage _name,
+        string storage _country,
+        string storage _description,
+        string storage _fundsNeeded,
+        string storage _image,
+        string storage _logo,
+        string storage _initiated,
+        string storage _status
+        // string memory projectTitle,
+        // string memory projectDesc,
+        // uint goalAmount
     ) public {
-        creator = projectStarter;
-        title = projectTitle;
-        description = projectDesc;
-        amountGoal = goalAmount;
-        currentBalance = 0;
-    }
-
-    function getDetails() public view returns 
-    (
-        address payable projectStarter,
-        string memory projectTitle,
-        string memory projectDesc,
-        State currentState,
-        uint256 currentAmount,
-        uint256 goalAmount
-    ) {
-        projectStarter = creator;
-        projectTitle = title;
-        projectDesc = description;
-        currentState = state;
-        currentAmount = currentBalance;
-        goalAmount = amountGoal;
+        name = _name;
+        country = _country;
+        description = _description;
+        fundsNeeded = _fundsNeeded;
+        image = _image;
+        logo = _logo;
+        initiated = _initiated;
+        status = _status;
     }
 }
