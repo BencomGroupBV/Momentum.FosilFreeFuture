@@ -33,6 +33,8 @@ public class CustomerController : Controller
     var portfolios = await _context.PortfolioDb.ToListAsync();
     var batches = await _context.BadgeDb.ToListAsync();
     var projects = await _context.ProjectDb.ToListAsync();
+    var approvedprojects = await _context.ApprovedProjectsDb.ToListAsync();
+    var participants = await _context.ParticipantDb.ToListAsync();
 
     model.ProfileCard.Profile = DbHelper.ParsProfileDb(profile);
     model.ProfileCard.Profile.Portfolio = new List<PortfolioModel>();
@@ -41,13 +43,25 @@ public class CustomerController : Controller
     {
       model.ProfileCard.Profile.Portfolio.Add(DbHelper.ParsPortfolioDb(portfoliodb));
 
-      foreach (var projectdb in projects.Where(p=>p.ParticipantId == portfoliodb.ParticipantId && p.Status == "closed"))
+      foreach (var projectdb in projects.Where(p=> p.Status == "closed"))
       {
-          model.FundedProjectCard.Projects.Add(DbHelper.ParseProjectDb(projectdb));
+        var approved = approvedprojects.FirstOrDefault(a => a.ParticipantId == portfoliodb.ParticipantId && a.ProjectId == projectdb.Id);
+        if (approved != null)
+        {
+          var projectmodel = DbHelper.ParseProjectDb(projectdb);
+          projectmodel.Logo = participants.FirstOrDefault(p => p.Id == approved.ParticipantId).Logo;
+          model.FundedProjectCard.Projects.Add(projectmodel);
+        }
       }
-      foreach (var projectdb in projects.Where(p => p.ParticipantId == portfoliodb.ParticipantId && p.Status == "open"))
+      foreach (var projectdb in projects.Where(p => p.Status == "open"))
       {
-        model.ActiveProjectCard.Projects.Add(DbHelper.ParseProjectDb(projectdb));
+        var approved = approvedprojects.FirstOrDefault(a => a.ParticipantId == portfoliodb.ParticipantId && a.ProjectId == projectdb.Id);
+        if (approved != null)
+        {
+          var projectmodel = DbHelper.ParseProjectDb(projectdb);
+          projectmodel.Logo = participants.FirstOrDefault(p => p.Id == approved.ParticipantId).Logo;
+          model.ActiveProjectCard.Projects.Add(projectmodel);
+        }
       }
     }
 

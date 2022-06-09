@@ -22,11 +22,12 @@
                   <h3 class="widget-user-username text-right font-weight-bolder">@project.Name</h3>
                   <h5 class="widget-user-desc text-right font-weight-bold">@project.Country</h5>
                 </div>
-
-                <div class="widget-user-logo">
-                  <img class="img-logo elevation-2" src="../dist/img/logo/@project.Logo" alt="User Avatar">
-                </div>
-
+                @if (Model.Type == "funded" || Model.Type == "active")
+                {
+                  <div class="widget-user-logo">
+                    <img class="img-logo elevation-2" src="../dist/img/logo/@project.Logo" alt="User Avatar">
+                  </div>
+                }
                 <div class="card-footer">
 
                   <div class="row">
@@ -69,7 +70,7 @@
                       }
                       @if (Model.Type == "toapprove")
                       {
-                        <button type="button" class="btn btn-block bg-gradient-warning btn-lg">To Approve</button>
+                        <a href="@Url.Action("ApproveProject","Participant", new {projectId=@project.Id, profile=@Model.ProfileId })"class="btn btn-warning btn-lg">Approve</a>
                       }
 
                       @if (Model.Type == "openproject")
@@ -80,6 +81,7 @@
                       {
                         <button type="button" class="btn btn-block bg-gradient-secondary btn-lg">View project</button>
                       }
+
                       @if (Model.Type == "project")
                       {
                         <button type="button" class="btn btn-block bg-gradient-secondary btn-lg">View project</button>
