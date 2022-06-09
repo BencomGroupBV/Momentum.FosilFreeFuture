@@ -30,12 +30,12 @@
                 <div class="card-footer">
 
                   <div class="row">
-                    <div class="col-12">
-                      <p>
+                    <div class="col-12 description-project">
+                      
                         @project.Description
-                      </p>
+                      
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 pt-2">
                       Initiated by: @project.Initiated
                     </div>
                   </div>
@@ -58,10 +58,33 @@
                       {
                         <span class="text-center btn-block bg-gradient-secondary btn-lg">Funded</span>
                       }
-                      else
+                      @if (Model.Type == "active")
                       {
                         <button type="button" class="btn btn-block bg-gradient-warning btn-lg">Back project</button>
                       }
+
+                      @if (Model.Type == "approved")
+                      {
+                        <button type="button" class="btn btn-block bg-gradient-secondary btn-lg">Approved</button>
+                      }
+                      @if (Model.Type == "toapprove")
+                      {
+                        <button type="button" class="btn btn-block bg-gradient-warning btn-lg">To Approve</button>
+                      }
+
+                      @if (Model.Type == "openproject")
+                      {
+                        <button type="button" class="btn btn-block bg-gradient-warning btn-lg">View project</button>
+                      }
+                      @if (Model.Type == "colsedproject")
+                      {
+                        <button type="button" class="btn btn-block bg-gradient-secondary btn-lg">View project</button>
+                      }
+                      @if (Model.Type == "project")
+                      {
+                        <button type="button" class="btn btn-block bg-gradient-secondary btn-lg">View project</button>
+                      }
+                      
                     </div>
                     <div class="col-4">
                       Funds needed:<br/>

@@ -33,17 +33,38 @@ public class InitiatorController : Controller
 
 
     //File from local files (in root project)
-    using (var r = new StreamReader("profile1.json"))
+    using (var r = new StreamReader("profile-co2ol.json"))
     {
       json = r.ReadToEnd();
       model.ProfileCard = JsonSerializer.Deserialize<ProfileCardModel>(json);
     }
+
+    using (var r = new StreamReader("projects-co2ol.json"))
+    {
+      json = r.ReadToEnd();
+      model.FundedProjectCard = JsonSerializer.Deserialize<ProjectsCardModel>(json);
+    }
+
+    model.Project = new ProjectModel
+    {
+      FundsNeeded = 0,
+      FundsReceived = 0,
+      Id = "1"
+    };
     return View(model);
   }
 
-  public void CreateProject()
+  public IActionResult CreateNewProject(ProjectModel projectModel)
   {
-    _projectSmartContract.CreateProject();
+   
+
+    return RedirectToAction("Index");
+
   }
+  //public void CreateProject()
+  //{
+  //  _projectSmartContract.CreateProject();
+  //  _projectSmartContract.GetProjects();
+  //}
 
 }

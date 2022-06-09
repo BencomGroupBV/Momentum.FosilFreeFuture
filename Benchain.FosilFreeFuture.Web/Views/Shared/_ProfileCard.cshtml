@@ -20,7 +20,7 @@
             <div class="row">
               <div class="col-4">
                 <div class="image p-0">
-                  <img src="dist/img/@Model.Profile.Avatar" class="img-circle elevation-4 p-1" height="170px">
+                  <img src="dist/img/@Model.Profile.Avatar" class="img-circle elevation-4 p-1" height="150px">
                 </div>
               </div>
               <div class="col-8">
@@ -36,8 +36,11 @@
                   </div>
                   <div class="col-12 font-weight-bolder">
                     &nbsp;
-                    <strong>
-                      <h3><i class="fa-brands fa-ethereum btn-lg"></i>@Model.Profile.CurrentBalance</h3></strong>
+                    <strong><h3><i class="fa-brands fa-ethereum btn-lg"></i>@Model.Profile.CurrentBalance </h3></strong>
+                    @if (@Model.Profile.Type == "participant")
+                    {
+                      <button type="button" class="btn btn-block bg-gradient-warning btn-lg">Buy more</button>
+                    }
                   </div>
                 </div>
               </div>

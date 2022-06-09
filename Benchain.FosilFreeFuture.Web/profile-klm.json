@@ -2,6 +2,7 @@
   "CardTitle": "Participant",
   "Profile": {
     "Id": 1,
+    "Type": "participant",
     "Name": "KLM",
     "City": "The Hague",
     "Country": "The Netherlands",

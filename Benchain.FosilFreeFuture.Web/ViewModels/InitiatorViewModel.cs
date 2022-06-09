@@ -7,5 +7,7 @@ namespace Benchain.FosilFreeFuture.Web.ViewModels
       public ProfileCardModel? ProfileCard { get; set; }
       public ProjectsCardModel? FundedProjectCard { get; set; }
       public ProjectsCardModel? ActiveProjectCard { get; set; }
+
+      public ProjectModel Project { get; set; }
   }
 }
