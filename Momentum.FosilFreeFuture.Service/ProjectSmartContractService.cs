@@ -1,18 +1,24 @@
 ﻿using System.Numerics;
 using Benchain.FosilFreeFuture.Service.Interfaces;
 using Benchain.FosilFreeFuture.Service.Models;
+using Blockchain.Contracts.Project;
+using Blockchain.Contracts.Project.ContractDefinition;
+using Blockchain.Contracts.Project_dev.ContractDefinition;
+using Blockchain.Contracts.ProjectFunding_dev;
+using Blockchain.Contracts.ProjectFunding_dev.ContractDefinition;
 using Microsoft.Extensions.Configuration;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Web3;
+using ProjectStartedEventDTO = Blockchain.Contracts.ProjectFunding_dev.ContractDefinition.ProjectStartedEventDTO;
 
 namespace Benchain.FosilFreeFuture.Service
 {
   public class ProjectSmartContractService : IProjectSmartContractService
   {
     private readonly IConfiguration _config;
-    private const string contractAddress = "0x235A3a59748D5fc4FC7af5eC50414f36dc81ADfD"; //ProjectFunding_dev.sol
+    private const string contractAddress = "0x56458410430024cbAB857eA36E596849ab46c979"; //ProjectFunding_dev.sol
     private const string ABI = @"[{'anonymous':false,'inputs':[{'indexed':false,'internalType':'address','name':'contractAddress','type':'address'},{'indexed':false,'internalType':'address','name':'projectStarter','type':'address'},{'indexed':false,'internalType':'string','name':'projectTitle','type':'string'},{'indexed':false,'internalType':'string','name':'projectDesc','type':'string'},{'indexed':false,'internalType':'uint256','name':'goalAmount','type':'uint256'}],'name':'ProjectStarted','type':'event'},{'inputs':[{'internalType':'uint256','name':'','type':'uint256'}],'name':'projects','outputs':[{'internalType':'contract Project_dev','name':'','type':'address'}],'stateMutability':'view','type':'function','constant':true},{'inputs':[{'internalType':'string','name':'title','type':'string'},{'internalType':'string','name':'description','type':'string'},{'internalType':'uint256','name':'amountToRaise','type':'uint256'}],'name':'createProject','outputs':[],'stateMutability':'nonpayable','type':'function'}]";
 
 
@@ -31,22 +37,24 @@ namespace Benchain.FosilFreeFuture.Service
 
     public string CreateProject(ProjectModel projectModel)
     {
-      var createProjectSmartContract = GetProjectSmartContract();
-      projectModel.InitiatorWalletAddress = "0xf452e0260223A5ecbA2DCB476030a5b78818e2ED";
-
       try
       {
-        var gas = new HexBigInteger(new BigInteger(700000));
-        var value = new HexBigInteger(new BigInteger(0));
+        projectModel.InitiatorWalletAddress = "0x4487e255846EbD79AB36c7fDc249B080Eb9F6953";
 
-        var createProjectFunction = createProjectSmartContract.GetFunction("createProject").SendTransactionAsync
-          (projectModel.InitiatorWalletAddress, gas, value, projectModel.Name, projectModel.Description, projectModel.FundsNeeded);
+        var web3 = new Web3(_config["BlockchainNetwork:EndPoint"]);
 
-        createProjectFunction.Wait();
+        var service = new ProjectfundingDevService(web3, contractAddress);
 
-        var test = createProjectFunction.Result;
+        var createProjectFunction = new CreateProjectFunction();
+        createProjectFunction.Description = projectModel.Description;
+        createProjectFunction.FromAddress = projectModel.InitiatorWalletAddress;
+        createProjectFunction.Title = projectModel.Name;
+        createProjectFunction.AmountToRaise = new BigInteger(projectModel.FundsNeeded);
 
-        return createProjectFunction.Result;
+        var projectAddress = service.CreateProjectRequestAsync(createProjectFunction);
+        projectAddress.Wait();
+
+        return projectAddress.Result; // this is the tx hash      
       }
       catch (Exception e)
       {

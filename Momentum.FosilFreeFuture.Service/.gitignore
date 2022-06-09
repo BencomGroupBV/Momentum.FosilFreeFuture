@@ -1,2 +1,3 @@
 /blockchain/truffle-config.js
-/blockchain/build/contracts
+/blockchain/build/contracts/*
+\blockchain\build\contracts\*
