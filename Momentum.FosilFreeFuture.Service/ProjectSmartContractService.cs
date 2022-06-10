@@ -29,7 +29,7 @@ namespace Benchain.FosilFreeFuture.Service
     {
       try
       {
-        projectModel.InitiatorWalletAddress = "0xbAE9FeEe5f6ed8D10B8b5b7e88a1D57eFF3724E7";
+        projectModel.InitiatorWalletAddress = "0xB4b27630636A98b99007dE4d862C33E37551167c";
         var contractAddress = _config["BlockchainNetwork:TestProjectFundingContractAddress"];
 
         var service = new ProjectFundingService(web3, contractAddress);
@@ -50,8 +50,6 @@ namespace Benchain.FosilFreeFuture.Service
 
         var projectAddress = service.CreateProjectRequestAsync(createProjectFunction);
         projectAddress.Wait();
-
-        var projects = GetProjects();
 
         return projectAddress.Result;
       }
