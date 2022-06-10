@@ -30,37 +30,46 @@ public class CustomerController : Controller
     };
     var profileId = 1;
     var profile =  _context.ProfileDb.SingleOrDefault(p => p.Id == profileId);
+    var profilesDb = await _context.ProfileDb.ToListAsync();
     var portfolios = await _context.PortfolioDb.ToListAsync();
     var batches = await _context.BadgeDb.ToListAsync();
     var projects = await _context.ProjectDb.ToListAsync();
     var approvedprojects = await _context.ApprovedProjectsDb.ToListAsync();
-    var participants = await _context.ParticipantDb.ToListAsync();
+    var fundedprojects = await _context.FundedProjectDb.ToListAsync();
 
     model.ProfileCard.Profile = DbHelper.ParsProfileDb(profile);
     model.ProfileCard.Profile.Portfolio = new List<PortfolioModel>();
     model.ProfileCard.Profile.Badges = new List<BadgeModel>();
+
+    model.FundedProjectCard.ProfileId = profileId.ToString();
+    model.ActiveProjectCard.ProfileId = profileId.ToString();
+
     foreach (var portfoliodb in portfolios.Where(p=>p.ProfileId==profileId))
     {
       model.ProfileCard.Profile.Portfolio.Add(DbHelper.ParsPortfolioDb(portfoliodb));
 
-      foreach (var projectdb in projects.Where(p=> p.Status == "closed"))
+      foreach (var projectdb in projects)
       {
         var approved = approvedprojects.FirstOrDefault(a => a.ParticipantId == portfoliodb.ParticipantId && a.ProjectId == projectdb.Id);
         if (approved != null)
         {
-          var projectmodel = DbHelper.ParseProjectDb(projectdb);
-          projectmodel.Logo = participants.FirstOrDefault(p => p.Id == approved.ParticipantId).Logo;
-          model.FundedProjectCard.Projects.Add(projectmodel);
-        }
-      }
-      foreach (var projectdb in projects.Where(p => p.Status == "open"))
-      {
-        var approved = approvedprojects.FirstOrDefault(a => a.ParticipantId == portfoliodb.ParticipantId && a.ProjectId == projectdb.Id);
-        if (approved != null)
-        {
-          var projectmodel = DbHelper.ParseProjectDb(projectdb);
-          projectmodel.Logo = participants.FirstOrDefault(p => p.Id == approved.ParticipantId).Logo;
-          model.ActiveProjectCard.Projects.Add(projectmodel);
+          var funded = fundedprojects.FirstOrDefault(f =>
+            f.ParticipantId == approved.ParticipantId && f.ProjectId == projectdb.Id && f.ProfileId == profile.Id);
+          if (funded != null)
+          {
+            var projectmodel = DbHelper.ParseProjectDb(projectdb);
+            projectmodel.Logo = profilesDb.FirstOrDefault(p => p.Id == approved.ParticipantId).Avatar.Remove(0, 5);
+            ;
+            projectmodel.ParticipantId = approved.ParticipantId;
+            model.FundedProjectCard.Projects.Add(projectmodel);
+          }
+          else
+          {
+            var projectmodel = DbHelper.ParseProjectDb(projectdb);
+            projectmodel.Logo = profilesDb.FirstOrDefault(p => p.Id == approved.ParticipantId).Avatar.Remove(0, 5);
+            projectmodel.ParticipantId = approved.ParticipantId;
+            model.ActiveProjectCard.Projects.Add(projectmodel);
+          }
         }
       }
     }
@@ -107,5 +116,40 @@ public class CustomerController : Controller
     return View(model);
   }
 
-   
+  public IActionResult FundProject(int projectId, int profileId, string participantId)
+  {
+
+    var participant = 0;
+
+    if (participantId != null)
+    {
+      participant = int.Parse(participantId);
+    }
+
+    var project = _context.ProjectDb.SingleOrDefault(p=>p.Id == projectId);
+    if (project == null) return RedirectToAction("Index", new { profileId });
+
+    project.FundsReceived += 10; //FUND Project
+    _context.Update(project);
+    _context.SaveChanges();
+
+
+    var funded = _context.FundedProjectDb.SingleOrDefault(a => a.ParticipantId == participant  && a.ProjectId == projectId && a.ProfileId == profileId);
+    if (funded == null)
+    {
+      funded = new FundedProjectDb
+      {
+        ParticipantId = participant,
+        ProjectId = projectId,
+        ProfileId = profileId
+
+      };
+      _context.FundedProjectDb.Add(funded);
+      _context.SaveChanges();
+    }
+
+    return RedirectToAction("Index", new { profileId });
+
+  }
+
 }

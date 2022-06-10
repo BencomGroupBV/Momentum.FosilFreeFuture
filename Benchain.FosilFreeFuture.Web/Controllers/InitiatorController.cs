@@ -22,8 +22,9 @@ public class InitiatorController : Controller
     _context = context;
   }
 
-  public async Task<IActionResult> Index(int? projectId)
+  public async Task<IActionResult> Index(int? profileId, int? projectId)
   {
+    profileId ??= 2;
 
     var model = new InitiatorViewModel()
     {
@@ -35,7 +36,7 @@ public class InitiatorController : Controller
       Project = new ProjectModel {Id = "1", FundsNeeded = 0, FundsReceived = 0}
     };
 
-    var profileId = 2; // CO2OL initiator
+    
     var profile = _context.ProfileDb.SingleOrDefault(p => p.Id == profileId);
     var projects = await _context.ProjectDb.ToListAsync();
 
