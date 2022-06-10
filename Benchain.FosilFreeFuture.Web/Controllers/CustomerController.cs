@@ -30,11 +30,12 @@ public class CustomerController : Controller
     };
     var profileId = 1;
     var profile =  _context.ProfileDb.SingleOrDefault(p => p.Id == profileId);
+    var profilesDb = await _context.ProfileDb.ToListAsync();
     var portfolios = await _context.PortfolioDb.ToListAsync();
     var batches = await _context.BadgeDb.ToListAsync();
     var projects = await _context.ProjectDb.ToListAsync();
     var approvedprojects = await _context.ApprovedProjectsDb.ToListAsync();
-    var participants = await _context.ParticipantDb.ToListAsync();
+    
 
     model.ProfileCard.Profile = DbHelper.ParsProfileDb(profile);
     model.ProfileCard.Profile.Portfolio = new List<PortfolioModel>();
@@ -49,7 +50,8 @@ public class CustomerController : Controller
         if (approved != null)
         {
           var projectmodel = DbHelper.ParseProjectDb(projectdb);
-          projectmodel.Logo = participants.FirstOrDefault(p => p.Id == approved.ParticipantId).Logo;
+          projectmodel.Logo = profilesDb.FirstOrDefault(p => p.Id == approved.ParticipantId).Avatar.Remove(0, 5); ;
+          projectmodel.ParticipantId = approved.ParticipantId;
           model.FundedProjectCard.Projects.Add(projectmodel);
         }
       }
@@ -59,7 +61,8 @@ public class CustomerController : Controller
         if (approved != null)
         {
           var projectmodel = DbHelper.ParseProjectDb(projectdb);
-          projectmodel.Logo = participants.FirstOrDefault(p => p.Id == approved.ParticipantId).Logo;
+          projectmodel.Logo = profilesDb.FirstOrDefault(p => p.Id == approved.ParticipantId).Avatar.Remove(0,5);
+          projectmodel.ParticipantId = approved.ParticipantId;
           model.ActiveProjectCard.Projects.Add(projectmodel);
         }
       }
