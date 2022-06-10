@@ -127,12 +127,20 @@ public class CustomerController : Controller
       participant = int.Parse(participantId);
     }
 
+    var portfolio = _context.PortfolioDb.SingleOrDefault(p => p.ParticipantId == participant);
+    if (portfolio == null) return RedirectToAction("Index", new { profileId });
+    if(portfolio.Balance<10) return RedirectToAction("Index", new { profileId });
+
+    portfolio.Balance -= 10; //FUND Project -10
+    _context.Update(portfolio);
+    _context.SaveChanges();
+    
     var project = _context.ProjectDb.SingleOrDefault(p=>p.Id == projectId);
     if (project == null) return RedirectToAction("Index", new { profileId });
-
     project.FundsReceived += 10; //FUND Project
     _context.Update(project);
     _context.SaveChanges();
+    
 
 
     var funded = _context.FundedProjectDb.SingleOrDefault(a => a.ParticipantId == participant  && a.ProjectId == projectId && a.ProfileId == profileId);
