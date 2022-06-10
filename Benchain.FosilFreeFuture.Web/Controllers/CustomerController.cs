@@ -75,6 +75,12 @@ public class CustomerController : Controller
       }
     }
 
+    var denhaag = portfolios.Where(p => p.ParticipantId == 5 && p.Status==0);
+    if (denhaag.Any())
+    {
+      model.ProfileCard.ShowHasMail = true;
+    }
+
     foreach (var batchDb in batches.Where(p => p.ProfileId == profileId))
     {
       model.ProfileCard.Profile.Badges.Add(DbHelper.ParsBadgeDb(batchDb));
