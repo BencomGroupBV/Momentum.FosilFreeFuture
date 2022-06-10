@@ -1,15 +1,21 @@
 ﻿using System.Numerics;
 using Benchain.FosilFreeFuture.Service.Models;
-using Blockchain.Contracts.ProjectFunding_dev.ContractDefinition;
+using Blockchain.Contracts.PartnerParticipantContract.ContractDefinition;
+using Blockchain.Contracts.Project.ContractDefinition;
+using Blockchain.Contracts.ProjectFunding.ContractDefinition;
 using Nethereum.Contracts;
-using ProjectStartedEventDTO = Blockchain.Contracts.ProjectFunding_dev.ContractDefinition.ProjectStartedEventDTO;
 
 namespace Benchain.FosilFreeFuture.Service.Interfaces
 {
   public interface IProjectSmartContractService
   {
     string CreateProject(ProjectModel projectModel);
-    Task<BigInteger> GetContractFunction(string functionName, Contract contract);
-    List<ProjectStartedEventDTO> GetProjects();
+    List<GetProjectDetailsOutputDTO> GetProjects();
+    GetProjectDetailsOutputDTO GetProjectDetails(string projectAddress);
+    List<GetProjectDetailsOutputDTO> GetProjectsSupportedByParticipant(string participantAddress);
+
+    void ApproveProject(string projectAddress, string partnerAddress);
+    List<GetProjectDetailsOutputDTO> GetApprovedProjects(string partnerAddress);
   }
 }
+
