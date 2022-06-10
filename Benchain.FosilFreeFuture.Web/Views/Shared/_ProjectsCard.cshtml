@@ -17,10 +17,17 @@
             <div class="col-4">
 
               <div class="card card-widget widget-user shadow-lg elevation-2">
-
+                @if (project.IsDefault == 1)
+                {
+                  <div class="ribbon-wrapper">
+                    <div class="ribbon bg-primary">
+                      Default
+                    </div>
+                  </div>
+                }
                 <div class="widget-user-header text-white" style="background: url('../dist/img/project/@project.Image') center center;">
-                  <h3 class="widget-user-username text-right font-weight-bolder">@project.Name</h3>
-                  <h5 class="widget-user-desc text-right font-weight-bold">@project.Country</h5>
+                  <h3 class="widget-user-username text-right font-weight-bolder">@project.Name&nbsp;&nbsp;&nbsp;</h3>
+                  <h5 class="widget-user-desc text-right font-weight-bold">@project.Country&nbsp;&nbsp;&nbsp</h5>
                 </div>
                 @if (Model.Type == "funded" || Model.Type == "active")
                 {

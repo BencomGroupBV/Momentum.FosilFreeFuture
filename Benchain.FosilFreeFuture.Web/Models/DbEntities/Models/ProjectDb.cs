@@ -13,5 +13,6 @@
     public int FundsReceived { get; set; }
     public string Status { get; set; }
     public int ParticipantId { get; set; }
+    public int IsDefault { get; set; }
 }
 
