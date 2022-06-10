@@ -45,11 +45,22 @@ contract ProjectFunding {
 
 }
 
-contract Project {    
+contract Project {
+    event ProjectApproved(
+        address indexed partnerAddress,
+        address projectAddress
+    );
+
+    event ProjectCompleted(
+        address projectAddress
+    );
+
+    address public intiator;
     string public name;
     string public country;
     string public description;
     uint256 public fundsNeeded;
+    uint256 public fundsReceived;
     string public image;
     string public logo;
     string public initiated;
@@ -70,6 +81,7 @@ contract Project {
         country = _country;
         description = _description;
         fundsNeeded = _fundsNeeded;
+        fundsReceived = 0;
         image = _image;
         logo = _logo;
         initiated = _initiated;
@@ -95,5 +107,17 @@ contract Project {
         projectLogo = logo;
         projectInitiated = initiated;
         projectStatus = status;
+    }
+
+    function approveProject() public {
+        emit ProjectApproved(msg.sender, address(this));
+    }
+
+    receive() external payable {
+        fundsReceived += msg.value;
+
+        if (fundsReceived >= fundsNeeded) {
+            emit ProjectCompleted(address(this));
+        }
     }
 }

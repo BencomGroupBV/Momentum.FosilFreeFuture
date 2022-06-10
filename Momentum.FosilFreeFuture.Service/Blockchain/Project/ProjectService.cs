@@ -42,6 +42,113 @@ namespace Blockchain.Contracts.Project
             ContractHandler = web3.Eth.GetContractHandler(contractAddress);
         }
 
+        public Task<GetProjectDetailsOutputDTO> GetProjectDetailsQueryAsync(GetProjectDetailsFunction getProjectDetailsFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryDeserializingToObjectAsync<GetProjectDetailsFunction, GetProjectDetailsOutputDTO>(getProjectDetailsFunction, blockParameter);
+        }
+
+        public Task<GetProjectDetailsOutputDTO> GetProjectDetailsQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryDeserializingToObjectAsync<GetProjectDetailsFunction, GetProjectDetailsOutputDTO>(null, blockParameter);
+        }
+
+        public Task<string> ApproveProjectRequestAsync(ApproveProjectFunction approveProjectFunction)
+        {
+             return ContractHandler.SendRequestAsync(approveProjectFunction);
+        }
+
+        public Task<string> ApproveProjectRequestAsync()
+        {
+             return ContractHandler.SendRequestAsync<ApproveProjectFunction>();
+        }
+
+        public Task<TransactionReceipt> ApproveProjectRequestAndWaitForReceiptAsync(ApproveProjectFunction approveProjectFunction, CancellationTokenSource cancellationToken = null)
+        {
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(approveProjectFunction, cancellationToken);
+        }
+
+        public Task<TransactionReceipt> ApproveProjectRequestAndWaitForReceiptAsync(CancellationTokenSource cancellationToken = null)
+        {
+             return ContractHandler.SendRequestAndWaitForReceiptAsync<ApproveProjectFunction>(null, cancellationToken);
+        }
+
+        public Task<string> CountryQueryAsync(CountryFunction countryFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<CountryFunction, string>(countryFunction, blockParameter);
+        }
+
+        
+        public Task<string> CountryQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<CountryFunction, string>(null, blockParameter);
+        }
+
+        public Task<string> DescriptionQueryAsync(DescriptionFunction descriptionFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<DescriptionFunction, string>(descriptionFunction, blockParameter);
+        }
+
+        
+        public Task<string> DescriptionQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<DescriptionFunction, string>(null, blockParameter);
+        }
+
+        public Task<BigInteger> FundsNeededQueryAsync(FundsNeededFunction fundsNeededFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<FundsNeededFunction, BigInteger>(fundsNeededFunction, blockParameter);
+        }
+
+        
+        public Task<BigInteger> FundsNeededQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<FundsNeededFunction, BigInteger>(null, blockParameter);
+        }
+
+        public Task<BigInteger> FundsReceivedQueryAsync(FundsReceivedFunction fundsReceivedFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<FundsReceivedFunction, BigInteger>(fundsReceivedFunction, blockParameter);
+        }
+
+        
+        public Task<BigInteger> FundsReceivedQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<FundsReceivedFunction, BigInteger>(null, blockParameter);
+        }
+
+        public Task<string> ImageQueryAsync(ImageFunction imageFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<ImageFunction, string>(imageFunction, blockParameter);
+        }
+
+        
+        public Task<string> ImageQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<ImageFunction, string>(null, blockParameter);
+        }
+
+        public Task<string> InitiatedQueryAsync(InitiatedFunction initiatedFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<InitiatedFunction, string>(initiatedFunction, blockParameter);
+        }
+
+        
+        public Task<string> InitiatedQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<InitiatedFunction, string>(null, blockParameter);
+        }
+
+        public Task<string> LogoQueryAsync(LogoFunction logoFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<LogoFunction, string>(logoFunction, blockParameter);
+        }
+
+        
+        public Task<string> LogoQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<LogoFunction, string>(null, blockParameter);
+        }
+
         public Task<string> NameQueryAsync(NameFunction nameFunction, BlockParameter blockParameter = null)
         {
             return ContractHandler.QueryAsync<NameFunction, string>(nameFunction, blockParameter);
@@ -51,6 +158,17 @@ namespace Blockchain.Contracts.Project
         public Task<string> NameQueryAsync(BlockParameter blockParameter = null)
         {
             return ContractHandler.QueryAsync<NameFunction, string>(null, blockParameter);
+        }
+
+        public Task<string> StatusQueryAsync(StatusFunction statusFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<StatusFunction, string>(statusFunction, blockParameter);
+        }
+
+        
+        public Task<string> StatusQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<StatusFunction, string>(null, blockParameter);
         }
     }
 }
