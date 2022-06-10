@@ -89,38 +89,31 @@ public class InitiatorController : Controller
 
   public IActionResult CreateNewProject(ProjectModel projectModel)
   {
-   // _projectSmartContract.CreateProject(projectModel);
+    _projectSmartContract.CreateProject(projectModel);
 
-   var projectDb = new ProjectDb();
-   if (projectModel.Id != null)
-   {
-     projectDb.Id = int.Parse(projectModel.Id);
-   }
+    var projectModels = new List<ProjectModel>();
+    var projects = _projectSmartContract.GetProjects();
 
-   projectDb.Name = projectModel.Name;
-   projectDb.Description = projectModel.Description;
-   projectDb.FundsNeeded = projectModel.FundsNeeded;
-   projectDb.Initiated = "CO2OL";
-   projectDb.Country = projectModel.Country;
-   projectDb.FundsReceived = projectModel.FundsReceived;
-   projectDb.Image = projectModel.Image;
-   projectDb.Status = projectModel.Status;
-   projectDb.Logo = projectModel.Logo;
-   projectDb.ParticipantId = projectModel.ParticipantId;
+    foreach (var project in projects)
+    {
+      var model = new ProjectModel
+      {
+        Name = project.ProjectName,
+        Description = project.ProjectDescription,
 
-   if (projectDb.Id != null)
-   {
-     _context.ProjectDb.Update(projectDb);
-   }
-   else
-   {
-     _context.ProjectDb.Add(projectDb);
-   }
-   _context.SaveChanges();
-    
-    return RedirectToAction("Index");
+      };
+      projectModels.Add(model);
+    }
 
+    var viewModel = new InitiatorViewModel
+    {
+      ActiveProjectCard = new ProjectsCardModel
+      {
+        Projects = projectModels
+      }
+    };
+
+    return View(viewModel);
   }
-
-
 }
+
