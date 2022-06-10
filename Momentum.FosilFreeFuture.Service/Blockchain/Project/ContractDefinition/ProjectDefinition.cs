@@ -107,6 +107,14 @@ namespace Blockchain.Contracts.Project.ContractDefinition
 
     }
 
+    public partial class IntiatorFunction : IntiatorFunctionBase { }
+
+    [Function("intiator", "address")]
+    public class IntiatorFunctionBase : FunctionMessage
+    {
+
+    }
+
     public partial class LogoFunction : LogoFunctionBase { }
 
     [Function("logo", "string")]
@@ -136,7 +144,9 @@ namespace Blockchain.Contracts.Project.ContractDefinition
     [Event("ProjectApproved")]
     public class ProjectApprovedEventDTOBase : IEventDTO
     {
-        [Parameter("address", "projectAddress", 1, false )]
+        [Parameter("address", "partnerAddress", 1, true )]
+        public virtual string PartnerAddress { get; set; }
+        [Parameter("address", "projectAddress", 2, false )]
         public virtual string ProjectAddress { get; set; }
     }
 
@@ -154,21 +164,23 @@ namespace Blockchain.Contracts.Project.ContractDefinition
     [FunctionOutput]
     public class GetProjectDetailsOutputDTOBase : IFunctionOutputDTO 
     {
-        [Parameter("string", "projectName", 1)]
+        [Parameter("address", "projectAddress", 1)]
+        public virtual string ProjectAddress { get; set; }
+        [Parameter("string", "projectName", 2)]
         public virtual string ProjectName { get; set; }
-        [Parameter("string", "projectCountry", 2)]
+        [Parameter("string", "projectCountry", 3)]
         public virtual string ProjectCountry { get; set; }
-        [Parameter("string", "projectDescription", 3)]
+        [Parameter("string", "projectDescription", 4)]
         public virtual string ProjectDescription { get; set; }
-        [Parameter("uint256", "projectFundsNeeded", 4)]
+        [Parameter("uint256", "projectFundsNeeded", 5)]
         public virtual BigInteger ProjectFundsNeeded { get; set; }
-        [Parameter("string", "projectImage", 5)]
+        [Parameter("string", "projectImage", 6)]
         public virtual string ProjectImage { get; set; }
-        [Parameter("string", "projectLogo", 6)]
+        [Parameter("string", "projectLogo", 7)]
         public virtual string ProjectLogo { get; set; }
-        [Parameter("string", "projectInitiated", 7)]
+        [Parameter("string", "projectInitiated", 8)]
         public virtual string ProjectInitiated { get; set; }
-        [Parameter("string", "projectStatus", 8)]
+        [Parameter("string", "projectStatus", 9)]
         public virtual string ProjectStatus { get; set; }
     }
 
@@ -225,6 +237,15 @@ namespace Blockchain.Contracts.Project.ContractDefinition
     public class InitiatedOutputDTOBase : IFunctionOutputDTO 
     {
         [Parameter("string", "", 1)]
+        public virtual string ReturnValue1 { get; set; }
+    }
+
+    public partial class IntiatorOutputDTO : IntiatorOutputDTOBase { }
+
+    [FunctionOutput]
+    public class IntiatorOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("address", "", 1)]
         public virtual string ReturnValue1 { get; set; }
     }
 

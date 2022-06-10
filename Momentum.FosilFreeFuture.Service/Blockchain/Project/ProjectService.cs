@@ -138,6 +138,17 @@ namespace Blockchain.Contracts.Project
             return ContractHandler.QueryAsync<InitiatedFunction, string>(null, blockParameter);
         }
 
+        public Task<string> IntiatorQueryAsync(IntiatorFunction intiatorFunction, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<IntiatorFunction, string>(intiatorFunction, blockParameter);
+        }
+
+        
+        public Task<string> IntiatorQueryAsync(BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<IntiatorFunction, string>(null, blockParameter);
+        }
+
         public Task<string> LogoQueryAsync(LogoFunction logoFunction, BlockParameter blockParameter = null)
         {
             return ContractHandler.QueryAsync<LogoFunction, string>(logoFunction, blockParameter);

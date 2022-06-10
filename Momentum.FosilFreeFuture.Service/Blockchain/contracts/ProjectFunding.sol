@@ -90,6 +90,7 @@ contract Project {
 
     function GetProjectDetails() public view returns 
     (
+        address projectAddress,
         string memory projectName,
         string memory projectCountry,
         string memory projectDescription,
@@ -99,6 +100,7 @@ contract Project {
         string memory projectInitiated,
         string memory projectStatus
     ) {
+        projectAddress = address(this);
         projectName = name;
         projectCountry = country;
         projectDescription = description;

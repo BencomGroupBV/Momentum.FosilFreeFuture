@@ -15,7 +15,7 @@ namespace Benchain.FosilFreeFuture.Service.Interfaces
     List<GetProjectDetailsOutputDTO> GetProjectsSupportedByParticipant(string participantAddress);
 
     void ApproveProject(string projectAddress, string partnerAddress);
-    List<GetProjectDetailsOutputDTO> GetApprovedProjects(string partnerAddress);
+    Task<List<GetProjectDetailsOutputDTO>> GetApprovedProjects(string partnerAddress);
   }
 }
 
