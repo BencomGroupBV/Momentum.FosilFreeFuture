@@ -90,7 +90,13 @@
                 @foreach (var portfolio in Model.Profile.Portfolio)
                 {
                   <div class="col-6">@portfolio.Name</div>
-                  <div class="col-6">@portfolio.Balance Eth</div>
+                  <div class="col-3">@portfolio.Balance Eth</div>
+                  <div class="col-3">
+                    @if (portfolio.CheckIt>0)
+                    {
+                      <i class="far fa-star nav-icon text-cyan"></i>
+                    }
+                  </div>
                 }
                 @if (Model.ShowAddProfile)
                 {

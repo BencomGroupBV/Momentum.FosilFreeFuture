@@ -52,7 +52,8 @@ public static class DbHelper
       Name = portfolioDb.Name,
       Balance = portfolioDb.Balance,
       ParticipantId = portfolioDb.ParticipantId,
-      ProfileId = portfolioDb.ProfileId
+      ProfileId = portfolioDb.ProfileId,
+      CheckIt = portfolioDb.CheckIt
     };
     return model;
   }

@@ -11,6 +11,9 @@ public class PortfolioDb
   public int ParticipantId { get; set; }
     
   public int ProfileId { get; set; }
+  
   public int Status { get; set; }
+
+  public int CheckIt { get; set; }
 
 }
