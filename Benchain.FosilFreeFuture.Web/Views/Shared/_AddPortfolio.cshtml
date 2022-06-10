@@ -1,0 +1,38 @@
+﻿
+    <div class="col-12">
+        <div class="card card-success">
+
+            <div class="card-header">
+                <h5 class="card-title font-weight-bolder">Add code</h5>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        @using (Html.BeginForm("AddPortfolio", "Portfolio", FormMethod.Post))
+                        {
+                            <div class="row">
+                                <div class="col-2 col-form-label-lg">
+                                    Code
+                                </div>
+                                <div class="col-2">
+                                  <input style="text-transform:uppercase"  class="form-control" data-val="true" data-val-required="The Code field is required." id="code" name="code" type="text" value="">
+                                </div>
+                            </div>
+
+                            <div class="row  m-2">
+                                <div class="col-2 col-form-label-lg">
+                                    <button  type="submit" class="btn btn-block bg-gradient-warning btn-lg" title="Connect your wallet to create a project">Add</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
