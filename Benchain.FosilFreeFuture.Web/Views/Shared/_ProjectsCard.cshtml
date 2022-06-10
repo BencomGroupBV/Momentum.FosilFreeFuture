@@ -61,7 +61,7 @@
                       }
                       @if (Model.Type == "active")
                       {
-                        <button type="button" class="btn btn-block bg-gradient-warning btn-lg">Back project</button>
+                        <a href="@Url.Action("FundProject","Customer", new {projectId=@project.Id, profileId=@Model.ProfileId, participantId=@project.ParticipantId })"class="btn btn-warning btn-lg">Backed</a>
                       }
 
                       @if (Model.Type == "approved")
