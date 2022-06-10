@@ -43,8 +43,9 @@ public class CustomerController : Controller
 
     model.FundedProjectCard.ProfileId = profileId.ToString();
     model.ActiveProjectCard.ProfileId = profileId.ToString();
+    model.ProfileCard.ShowAddProfile = true;
 
-    foreach (var portfoliodb in portfolios.Where(p=>p.ProfileId==profileId))
+    foreach (var portfoliodb in portfolios.Where(p=>p.ProfileId==profileId && p.Status==1))
     {
       model.ProfileCard.Profile.Portfolio.Add(DbHelper.ParsPortfolioDb(portfoliodb));
 
