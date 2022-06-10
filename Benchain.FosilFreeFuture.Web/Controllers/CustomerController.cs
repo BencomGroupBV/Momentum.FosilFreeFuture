@@ -126,6 +126,14 @@ public class CustomerController : Controller
       participant = int.Parse(participantId);
     }
 
+    var project = _context.ProjectDb.SingleOrDefault(p=>p.Id == projectId);
+    if (project == null) return RedirectToAction("Index", new { profileId });
+
+    project.FundsReceived += 10; //FUND Project
+    _context.Update(project);
+    _context.SaveChanges();
+
+
     var funded = _context.FundedProjectDb.SingleOrDefault(a => a.ParticipantId == participant  && a.ProjectId == projectId && a.ProfileId == profileId);
     if (funded == null)
     {
