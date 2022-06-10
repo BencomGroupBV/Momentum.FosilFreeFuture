@@ -88,6 +88,9 @@ namespace Benchain.FosilFreeFuture.Service
       return result;
     }
 
-
+    Task<BigInteger> IParticipantService.GetCurrentBalance(string participantAddress)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

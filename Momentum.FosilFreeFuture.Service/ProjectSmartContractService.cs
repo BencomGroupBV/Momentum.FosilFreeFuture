@@ -61,7 +61,6 @@ namespace Benchain.FosilFreeFuture.Service
 
     public List<GetProjectDetailsOutputDTO> GetProjects()
     {
-     
       var projectAddresses = new List<string>();
 
       var contractAddress = _config["BlockchainNetwork:TestProjectFundingContractAddress"];
@@ -114,29 +113,28 @@ namespace Benchain.FosilFreeFuture.Service
       result.Wait();
     }
 
-    public List<ProjectApprovedEventDTO> GetApprovedProjects(string partnerAddress)
-    {
-      throw new NotImplementedException();
-      /*
+    public async Task<List<GetProjectDetailsOutputDTO>> GetApprovedProjects(string partnerAddress)
+    {     
       var allProjects = GetProjects();
 
-      var approvedProjects = new List<ProjectApprovedEventDTO>();
+      var approvedProjects = new List<GetProjectDetailsOutputDTO>();
 
+      // For all projects, check if we can find a ProjectApprovedEvent. If so, add this project to the returned results.
       foreach (var project in allProjects) {
         var results = new List<ProjectApprovedEventDTO>();
 
-        // var projectAddress = project.Event.ContractAddress;
+        var projectAddress = project.ProjectAddress;
         var eventHandler = web3.Eth.GetEvent<ProjectApprovedEventDTO>(projectAddress);
-
         var filterInput = eventHandler.CreateFilterInput(partnerAddress, fromBlock: BlockParameter.CreateEarliest(), toBlock: BlockParameter.CreateLatest());
-        var changes = eventHandler.GetAllChangesAsync(filterInput);
+        var changes = await eventHandler.GetAllChangesAsync(filterInput);
 
-        changes.Wait();
-
-        changes.Result.ForEach(result => approvedProjects.Add(result.Event));
+        if (changes.Any())
+        {
+          approvedProjects.Add(project);
+        }
       }
 
-      return approvedProjects;*/
+      return approvedProjects;
     }
 
     public GetProjectDetailsOutputDTO GetProjectDetails(string projectAddress)
@@ -161,41 +159,5 @@ namespace Benchain.FosilFreeFuture.Service
 
       return result;
     }
-
-    List<GetProjectDetailsOutputDTO> IProjectSmartContractService.GetApprovedProjects(string partnerAddress)
-    {
-      throw new NotImplementedException();
-    }
-
-    /*
-    private string FindProjectsForPartner(string partnerAddress)
-    {
-      var ledgerContractAddress = _config["BlockchainNetwork:TestPartnerParticipantContractLedgerAddress"];
-      PartnerParticipantContractLedgerService service = new PartnerParticipantContractLedgerService(web3, ledgerContractAddress);
-
-      var eventHandler = web3.Eth.GetEvent<PartnerParticipantContractCreatedEventDTO>(ledgerContractAddress);
-
-      var filterInput = eventHandler.CreateFilterInput(fromBlock: BlockParameter.CreateEarliest(), toBlock: BlockParameter.CreateLatest());
-      var changes = eventHandler.GetAllChangesAsync(filterInput);
-
-      changes.Wait();
-
-      var result = "";
-
-      foreach (var contractCreatedEvent in changes.Result)
-      {
-        if (contractCreatedEvent.Event.PartnerAddress == partnerAddress && contractCreatedEvent.Event.ParticipantAddress == participantAddress)
-        {
-          result = contractCreatedEvent.Event.ContractAddress;
-
-          break;
-        }
-      }
-
-      return result;
-    }
-    */
-
-
   }
 }
