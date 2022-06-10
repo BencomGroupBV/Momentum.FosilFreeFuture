@@ -12,6 +12,8 @@
 
     public int ProfileId { get; set; }
 
+    public int CheckIt { get; set; }
+
   }
 }
  
